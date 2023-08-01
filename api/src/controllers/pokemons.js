@@ -4,14 +4,13 @@ const axios = require('axios');
 // Utilities import
 const {
   extractDetailedData,
-  extractMinData,
-  validateAllProperties,
-  getFromPokeball
+  validateAllProperties
 } = require('../utils/dataHandlers');
 
 const {
   searchInPokeball,
-  searchInApi
+  searchInApi,
+  getFromPokeball
 } = require('../utils/searchHandlers');
 
 class pokemonsController {
@@ -31,7 +30,7 @@ class pokemonsController {
       let pokemonData = await axios
         .get(url)
         .then(response => response.data)
-        .then(data => extractMinData(data))
+        .then(data => extractDetailedData(data))
         .catch()
 
       pokemonsWithInfo.push(pokemonData)

@@ -1,4 +1,4 @@
-const { Pokemon, Type } = require('../db');
+const { Pokemon } = require('../db');
 
 extractStats = (statsArray) => {
   let stats = new Object();
@@ -70,19 +70,4 @@ module.exports = {
       types.length
     )
   },
-  
-  getFromPokeball: async (id) => {
-    const pokemon = await Pokemon.findByPk(id, {
-      attributes: { exclude: ['createdAt', 'updatedAt'] },
-      include: [{
-        model: Type,
-        attributes: ['name'],
-        through: { attributes: [] },
-        as: 'types'
-      }]
-    })
-    // Ahora quiero mapear mi array "types" para que se vea mas limpio.
-    const types = pokemon.types.map(pokemonType => pokemonType.name);
-    return { ...pokemon.toJSON(), types: types }
-  }
 };

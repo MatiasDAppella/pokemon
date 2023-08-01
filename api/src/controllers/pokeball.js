@@ -1,4 +1,4 @@
-const { Pokemon, pokemon_types } = require('../db');
+const { Pokemon, Type } = require('../db');
 const axios = require('axios');
 
 // Utilities import
@@ -6,17 +6,12 @@ const {
   extractDetailedData
 } = require('../utils/dataHandlers');
 
-const { pokemons } = require('../controllers/pokemons')
+const { pokemons } = require('./pokemons');
+const { getAllFromPokeball } = require('../utils/searchHandlers');
 
-class extraController {
-  getRandomImage = async () => {
-    const random = Math.floor(Math.random() * 151);
-    const endpoint = `https://pokeapi.co/api/v2/pokemon/${random}`;
-
-    return await axios
-      .get(endpoint)
-      .then(response => response.data.sprites.other['official-artwork'].front_default)
-      .catch(() => { throw new Error("No response from api") })
+class pokeballController {
+  getAllPokemonsFromPokeball = async () => {
+    return await getAllFromPokeball();
   };
 
   catchInPokeballFromApi = async (apiid) => {
@@ -47,7 +42,7 @@ class extraController {
   };
 };
 
-const extra = new extraController();
+const pokeball = new pokeballController();
 module.exports = {
-  extra
+  pokeball
 };

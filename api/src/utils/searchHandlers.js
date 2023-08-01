@@ -3,7 +3,7 @@ const axios = require('axios');
 
 // Utilities import
 const {
-  extractMinData
+  extractDetailedData
 } = require('./dataHandlers');
 
 const dataReformat = (resultsArray) => {
@@ -14,11 +14,40 @@ const dataReformat = (resultsArray) => {
 };
 
 module.exports = {
+  getFromPokeball: async (id) => {
+    const pokemon = await Pokemon.findByPk(id, {
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+      include: [{
+        model: Type,
+        attributes: ['name'],
+        through: { attributes: [] },
+        as: 'types'
+      }]
+    })
+    // Ahora quiero mapear mi array "types" para que se vea mas limpio.
+    const types = pokemon.types.map(pokemonType => pokemonType.name);
+    return { ...pokemon.toJSON(), types: types }
+  },
+
+  getAllFromPokeball: async () => {
+    const results = await Pokemon.findAll({
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+      include: [{
+        model: Type,
+        attributes: ['name'],
+        through: { attributes: [] },
+        as: 'types'
+      }]
+    })
+
+    return dataReformat(results)
+  },
+
   searchInPokeball: async (search) => {
     const name = search.toLowerCase()
     const results = await Pokemon.findAll({
       where: { name },
-      attributes: ['id', 'name', 'image', 'apiid'],
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
       include: [{
         model: Type,
         attributes: ['name'],
@@ -37,7 +66,7 @@ module.exports = {
     return await axios
       .get(endpoint)
       .then(response => response.data)
-      .then(data => extractMinData(data))
+      .then(data => extractDetailedData(data))
       .catch(() => undefined)
   }
 };
