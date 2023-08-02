@@ -1,0 +1,2 @@
+// pokemons
+export const RENDER_FIRST_POKEMONS = 'RENDER_FIRST_POKEMONS';

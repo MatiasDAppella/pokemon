@@ -4,39 +4,23 @@ import style from './Card.module.less';
 // Components
 import Tag from './Tag/Tag';
 
-const pokemon = {
-  "name": "hawlucha",
-  "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/701.png",
-  "health": 78,
-  "stroke": 92,
-  "defense": 75,
-  "speed": 118,
-  "height": 8,
-  "weight": 215,
-  "apiid": "701",
-  "types": [
-    "fighting",
-    "flying"
-  ]
-}
-
-const Card = () => {
+const Card = ({ apiid, name, image, types }) => {
   return <li className={style.card}>
     <div className={style.imgBox}>
       <div className={style.data}>
-        <span>{(pokemon.apiid)
-          ? pokemon.apiid
+        <span>{(apiid)
+          ? apiid
           : "?"
         }</span>
-        <h2>{pokemon.name}</h2>
+        <h2>{name}</h2>
       </div>
 
-      <img src={pokemon.image} alt="pokémon name" />
+      <img src={image} alt="pokémon name" />
       <div className={style.shadow}></div>
     </div>
 
     <div className={style.infoBox}>
-      <ul>{pokemon.types.map(name => <Tag type={name}/>)}</ul>
+      <ul>{types.map(name => <Tag key={name} type={name}/>)}</ul>
     </div>
   </li>
 };
