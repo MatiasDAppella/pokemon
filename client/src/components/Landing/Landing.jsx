@@ -1,5 +1,5 @@
 // Styles
-import style from './Landing.module.css';
+import style from './Landing.module.less';
 
 // Hooks
 import { NavLink } from 'react-router-dom';
