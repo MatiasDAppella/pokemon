@@ -10,3 +10,13 @@ export const renderFirstPokemons = () => {
       payload: data
     })).catch()
 };
+
+export const sortAscByParam = (param) => ({
+  type: type.SORT_ASC_BY_PARAMS,
+  payload: param
+});
+
+export const sortDesByParam = (param) => ({
+  type: type.SORT_DES_BY_PARAMS,
+  payload: param
+});

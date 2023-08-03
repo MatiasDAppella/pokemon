@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import Card from './Card/Card';
 
 const Pokemons = () => {
-  const pokemons = useSelector(state => state.pokemons)
+  const pokemons = useSelector(state => state.filtered)
 
   return <ul className={style.container}>{
     pokemons?.map(pokemon => <Card
@@ -17,6 +17,10 @@ const Pokemons = () => {
       name={pokemon.name}
       image={pokemon.image}
       types={pokemon.types}
+      stroke={pokemon.stroke}
+      defense={pokemon.defense}
+      health={pokemon.health}
+      speed={pokemon.speed}
     />)
   }</ul>
 };
