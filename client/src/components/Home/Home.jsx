@@ -12,8 +12,11 @@ import SearchBar from './SearchBar/SearchBar';
 const Home = () => {
   const [renderedBar, setRenderedBar] = useState("filters")
 
-  return <main>
-    <h1>Pokemon home page</h1>
+  return <main className={style.main}>
+    <div className={style.toggleBar}>
+      <h1>Pokemon home page</h1>
+      <button>BUTTON</button>
+    </div>
     {(renderedBar === "filters")
       ? <Filters/>
       : <SearchBar/>

@@ -8,13 +8,20 @@ import { useDispatch } from 'react-redux';
 
 // Actions
 import { sortAscByParam, sortDesByParam } from '../../../redux/actions';
+import { useState } from 'react';
 
 const Filters = () => {
   const dispath = useDispatch()
+  const [isSame, setIsSame] = useState({ last: "", toggle: false })
 
   const clickHandler = (event) => {
     const param = event.target.textContent.toLowerCase().trim()
-    dispath(sortAscByParam(param))
+
+    if (param !== isSame.last) setIsSame({ ...isSame, toggle: !isSame.toggle })
+    else setIsSame({ last: param, toggle: false })
+    
+    if (isSame.toggle) dispath(sortAscByParam(param))
+    else dispath(sortDesByParam(param))
   }
   
   return <div className={style.filterBar}>

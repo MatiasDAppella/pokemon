@@ -1,0 +1,24 @@
+@import '../../less/colors.less';
+
+.main {
+  .toggleBar {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    gap: 10rem;
+
+    button {
+      height: 3rem;
+      border-radius: 1rem;
+      border: @grey solid .1rem;
+      padding: 0 1rem;
+
+      transition: .1s;
+    }
+
+    button:hover {
+      cursor: pointer;
+      transform: scale(1.1) translate(0, -.1rem);
+    }
+  }
+}
