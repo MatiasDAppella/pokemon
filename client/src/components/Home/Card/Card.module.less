@@ -10,6 +10,8 @@
   background-color: rgba(0, 0, 0, .1);
   box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
 
+  transition: .5s;
+
   // display
   display: flex;
   flex-flow: row wrap;
@@ -52,6 +54,8 @@
       left: 0;
       right: 0;
       bottom: 0;
+
+      transition: .3s;
     }
 
     .shadow {
@@ -79,5 +83,21 @@
       padding: 0;
       margin: 0;
     }
+  }
+}
+
+.card:hover {
+  cursor: pointer;
+  background-color: #454545;
+  transition: 2s;
+
+  img {
+    transform: scale(1.4);
+    filter: brightness(1.2);
+    transition: 1s;
+  }
+
+  .data {
+    visibility: hidden;
   }
 }
