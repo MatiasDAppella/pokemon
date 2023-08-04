@@ -9,12 +9,10 @@ import ToggleBars from './ToggleBars/ToggleBars';
 import Pokemons from './Pokemons/Pokemons';
 
 const Home = () => {
-  const [renderedBar, setRenderedBar] = useState("filters")
 
   return <main className={style.main}>
     <ToggleBars/>
     <Pokemons/>
-
   </main>
 };
 
