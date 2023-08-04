@@ -21,14 +21,14 @@ export const reducer = (state = initialState, action) => {
     case type.SORT_ASC_BY_PARAMS:
       return {
         ...state,
-        filtered: [...state.pokemons].sort((a, b) => a[action.payload.toLowerCase()] - b[action.payload.toLowerCase()]),
+        filtered: [...state.pokemons].sort((a, b) => a[action.payload] - b[action.payload]),
         filteredBy: { filter: action.payload, method: c.ASC }
       }
 
     case type.SORT_DES_BY_PARAMS:
       return {
         ...state,
-        filtered: [...state.pokemons].sort((a, b) => b[action.payload.toLowerCase()] - a[action.payload.toLowerCase()]),
+        filtered: [...state.pokemons].sort((a, b) => b[action.payload] - a[action.payload]),
         filteredBy: { filter: action.payload, method: c.DES }
       }
 

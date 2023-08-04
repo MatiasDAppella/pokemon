@@ -2,8 +2,8 @@
 export const ASC = 'ASC', DES = 'DES';
 
 // sort types
-export const STROKE = 'STROKE';
-export const DEFENSE = 'DEFENSE';
-export const HEALTH = 'HEALTH';
-export const SPEED = 'SPEED';
-export const NONE = 'NONE';
+export const STROKE = 'stroke';
+export const DEFENSE = 'defense';
+export const HEALTH = 'health';
+export const SPEED = 'speed';
+export const NONE = 'none';
