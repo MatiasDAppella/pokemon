@@ -6,29 +6,19 @@ import { faHandFist, faShieldHalved, faHeart, faDragon } from '@fortawesome/free
 // Hooks
 import { useSelector } from 'react-redux';
 
+// Constants
+import { STROKE, DEFENSE, HEALTH, SPEED } from '../../../../../constants';
+
 const Stats = ({ stroke, defense, health, speed, apiid }) => {
   const filteredBy = useSelector(state => state.filteredBy)
 
-  return <div className={style.stats}>
-    <FontAwesomeIcon className={
-        (filteredBy.filter === "stroke") ? style.stroke
-      : (filteredBy.filter === "defense") ? style.defense
-      : (filteredBy.filter === "health") ? style.health
-      : (filteredBy.filter === "speed") ? style.speed
-      : style.catched
-    } icon={
-        (filteredBy.filter === "stroke") ? faHandFist
-      : (filteredBy.filter === "defense") ? faShieldHalved
-      : (filteredBy.filter === "health") ? faHeart
-      : (filteredBy.filter === "speed") ? faDragon
-      : {}
-    }/>{
-        (filteredBy.filter === "stroke") ? stroke
-      : (filteredBy.filter === "defense") ? defense
-      : (filteredBy.filter === "health") ? health
-      : (filteredBy.filter === "speed") ? speed
-      : <span>{(apiid) ? apiid : "?"}</span>
-    }</div>
+  return <div className={style.stats}>{
+      (filteredBy.filter === STROKE) ? <><FontAwesomeIcon className={style.stroke} icon={faHandFist}/>{stroke}</>
+    : (filteredBy.filter === DEFENSE) ? <><FontAwesomeIcon className={style.defense} icon={faShieldHalved}/>{defense}</>
+    : (filteredBy.filter === HEALTH) ? <><FontAwesomeIcon className={style.health} icon={faHeart}/>{health}</>
+    : (filteredBy.filter === SPEED) ? <><FontAwesomeIcon className={style.speed} icon={faDragon}/>{speed}</>
+    : <span>{(apiid) ? apiid : "?"}</span>
+  }</div>
 };
 
 export default Stats;
