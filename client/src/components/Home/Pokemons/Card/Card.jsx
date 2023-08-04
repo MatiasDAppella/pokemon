@@ -15,15 +15,13 @@ const Card = (pokemon) => {
   return <li className={style.card}>
     <div className={style.imgBox}>
       <div className={style.data}>
-        {
-          (filter === "none")
-          ? <span className={style.stat}>{(apiid) ? apiid : "?"}</span>
-          : <Stats className={style.stat}
-            stroke={stroke}
-            defense={defense}
-            health={health}
-            speed={speed}/>
-        }
+        <Stats className={style.stat}
+          stroke={stroke}
+          defense={defense}
+          health={health}
+          speed={speed}
+          apiid={apiid}
+        ></Stats>
         <h2>{name}</h2>
       </div>
 

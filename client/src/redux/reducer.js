@@ -3,7 +3,8 @@ import * as type from './types';
 const initialState = {
   pokemons: [],
   filtered: [],
-  filteredBy: "none",
+  filteredBy: { filter: "", method: "" },
+  search: [],
   detail: {}
 }
 
@@ -20,14 +21,23 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         filtered: [...state.pokemons].sort((a, b) => a[action.payload] - b[action.payload]),
-        filteredBy: action.payload
+        filteredBy: { filter: action.payload, method: "asc" }
       }
 
     case type.SORT_DES_BY_PARAMS:
       return {
         ...state,
         filtered: [...state.pokemons].sort((a, b) => b[action.payload] - a[action.payload]),
-        filteredBy: action.payload
+        filteredBy: { filter: action.payload, method: "des" }
+      }
+
+    case type.SEARCH:
+      return {
+        ...state,
+        search: action.payload,
+        pokemons: [...pokemons, ...action.payload],
+        filtered: [...filtered, ...action.payload],
+        filteredBy: { filter: "", method: "" },
       }
 
     default:

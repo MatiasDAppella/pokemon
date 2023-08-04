@@ -4,23 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandFist, faShieldHalved, faHeart, faDragon, faDiamond } from '@fortawesome/free-solid-svg-icons';
 
 // Hooks
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Actions
 import { sortAscByParam, sortDesByParam } from '../../../../redux/actions';
-import { useState } from 'react';
 
 const Filters = () => {
   const dispath = useDispatch()
-  const [isSame, setIsSame] = useState({ last: "", toggle: false })
+  const filteredBy = useSelector(state => state.filteredBy)
 
   const clickHandler = (event) => {
     const param = event.target.textContent.toLowerCase().trim()
-
-    if (param !== isSame.last) setIsSame({ ...isSame, toggle: !isSame.toggle })
-    else setIsSame({ last: param, toggle: false })
     
-    if (isSame.toggle) dispath(sortAscByParam(param))
+    if (filteredBy.method === "des") dispath(sortAscByParam(param))
     else dispath(sortDesByParam(param))
   }
   
