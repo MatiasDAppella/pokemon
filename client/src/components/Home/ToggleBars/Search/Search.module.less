@@ -1,0 +1,43 @@
+@import '../../../../less/colors.less';
+@import '../../../../less/fonts.less';
+
+.searchBar {
+  background-color: @lightblue;
+  border-radius: 1rem;
+  height: 5rem;
+  border: #222222 solid .1rem;
+
+  // display
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .1rem;
+
+  button, input {
+    font-size: larger;
+    font-family: "CeraRoundPro";
+    border-radius: .5rem;
+    border: #222222 solid .1rem;
+  }
+
+  input {
+    width: 50%;
+    height: 45%;
+  }
+
+  button {
+    background-color: @type-c-ice;
+    color: white;
+    width: 20%;
+    height: 50%;
+
+    // effect
+    transition: .3s;
+  }
+
+  button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #222222;
+  }
+}

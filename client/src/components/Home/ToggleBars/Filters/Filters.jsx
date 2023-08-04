@@ -7,7 +7,7 @@ import { faHandFist, faShieldHalved, faHeart, faDragon, faDiamond } from '@forta
 import { useDispatch } from 'react-redux';
 
 // Actions
-import { sortAscByParam, sortDesByParam } from '../../../redux/actions';
+import { sortAscByParam, sortDesByParam } from '../../../../redux/actions';
 import { useState } from 'react';
 
 const Filters = () => {

@@ -1,0 +1,46 @@
+@import '../../../less/colors.less';
+@import '../../../less/fonts.less';
+
+.toggleBars {
+  margin-top: 2rem;
+  padding: 0 2rem;
+
+  .toggleBox {
+    padding: 0 5rem;
+    height: 2rem;
+
+    // display
+    display: flex;
+    justify-content: end;
+    gap: .3rem;
+    
+    button {
+      color: white;
+      font-family: "CeraRoundPro";
+      background-color: transparent;
+      border-radius: .5rem .5rem 0 0;
+      height: 100%;
+      padding: 0 2rem;
+      border: none;
+    }
+
+    button:hover {
+      cursor: pointer;
+      background-color: white;
+      border-left: #222222 solid .1rem;
+      border-right: #222222 solid .1rem;
+      border-top: #222222 solid .1rem;
+      color: #222222;
+
+      transition: .3s;
+    }
+
+    .filter {
+      background-color: @green;
+    }
+
+    .search {
+      background-color: @lightblue;
+    }
+  }
+}

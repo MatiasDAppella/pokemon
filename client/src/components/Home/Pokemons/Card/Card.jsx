@@ -17,10 +17,13 @@ const Card = (pokemon) => {
       <div className={style.data}>
         {
           (filter === "none")
-          ? <span>{(apiid) ? apiid : "?"}</span>
-          : <Stats stroke={stroke} defense={defense} health={health} speed={speed}/>
+          ? <span className={style.stat}>{(apiid) ? apiid : "?"}</span>
+          : <Stats className={style.stat}
+            stroke={stroke}
+            defense={defense}
+            health={health}
+            speed={speed}/>
         }
-        
         <h2>{name}</h2>
       </div>
 
