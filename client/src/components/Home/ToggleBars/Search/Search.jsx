@@ -22,12 +22,7 @@ const SearchBar = () => {
     setInput("")
   };
 
-  const handleDisplayToggle = () => {
-
-  };
-
   return <div className={style.searchBar}>
-    <button onClick={handleDisplayToggle}>Show all</button>
     <input name="inputsearch" type="text" value={input} onChange={handleChange}/>
     <button onClick={handleSearch}>Search</button>
   </div>

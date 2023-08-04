@@ -1,27 +1,30 @@
 // Style
 import style from './ToggleBars.module.less';
 
-// Hooks
+// Hooks & constants
 import { useState } from 'react';
+import { SEARCH_BAR, SORT_BAR, FILTER_BAR } from '../../../constants';
 
 // Components
-import Filters from './Filters/Filters';
+import Sort from './Sort/Sort';
 import Search from './Search/Search';
+import Filter from './Filter/Filter';
 
 const ToggleBars = () => {
-  const [toggle, setToggle] = useState(true)
+  const [toggle, setToggle] = useState(FILTER_BAR)
 
   const clickHandler = (event) => {
-    if (event.target.textContent === "Search") setToggle(true)
-    else setToggle(false)
+    setToggle(event.target.id)
   };
 
   return <nav className={style.toggleBars}>
     <div className={style.toggleBox}>
-      <button onClick={clickHandler} className={style.search}>Search</button>
-      <button onClick={clickHandler} className={style.filter}>Filter</button>
+      <button id={SEARCH_BAR} onClick={clickHandler} className={style.search}>Search</button>
+      <button id={SORT_BAR} onClick={clickHandler} className={style.sort}>Sort</button>
+      <button id={FILTER_BAR} onClick={clickHandler} className={style.filter}>Filter</button>
+
     </div>
-    {(toggle) ? <Search/> : <Filters/>}
+    {(toggle === FILTER_BAR) ? <Filter/> : (toggle === SEARCH_BAR) ? <Search/> : <Sort/>}
   </nav>
 };
 
