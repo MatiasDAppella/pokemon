@@ -3,10 +3,10 @@ import * as c from '../constants';
 
 const initialState = {
   pokemons: [],
-  filtered: [],
-  filteredBy: { filter: c.NONE, method: c.DES },
   search: [],
-  detail: {}
+  detail: {},
+  displayPokemons: [],
+  displayConfig: { filter: c.ALL, sort: c.NONE, method: c.NONE }
 }
 
 export const reducer = (state = initialState, action) => {
@@ -15,30 +15,30 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         pokemons: action.payload,
-        filtered: action.payload
+        displayPokemons: action.payload
       };
     
     case type.SORT_ASC_BY_PARAMS:
       return {
         ...state,
-        filtered: [...state.pokemons].sort((a, b) => a[action.payload] - b[action.payload]),
-        filteredBy: { filter: action.payload, method: c.ASC }
+        displayPokemons: [...state.pokemons].sort((a, b) => a[action.payload] - b[action.payload]),
+        displayConfig: { ...state.displayConfig, sort: action.payload, method: c.ASC }
       }
 
     case type.SORT_DES_BY_PARAMS:
       return {
         ...state,
-        filtered: [...state.pokemons].sort((a, b) => b[action.payload] - a[action.payload]),
-        filteredBy: { filter: action.payload, method: c.DES }
+        displayPokemons: [...state.pokemons].sort((a, b) => b[action.payload] - a[action.payload]),
+        displayConfig: { ...state.displayConfig, sort: action.payload, method: c.DES }
       }
 
     case type.SEARCH:
       return {
         ...state,
-        search: action.payload,
-        pokemons: [...pokemons, ...action.payload],
-        filtered: [...filtered, ...action.payload],
-        filteredBy: { filter: c.NONE, method: c.DES }
+        search: [...action.payload, ...state.search],
+        pokemons: [...state.pokemons, ...action.payload],
+        displayPokemons: [...action.payload, ...state.search],
+        displayConfig: { filter: c.SEARCH, sort: c.NONE, method: c.NONE }
       }
 
     default:

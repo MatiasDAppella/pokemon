@@ -7,3 +7,4 @@ export const SORT_DES_BY_PARAMS = 'SORT_DES_BY_PARAMS';
 
 // search
 export const SEARCH = 'SEARCH';
+export const TOGGLE_DISPLAY = 'TOGGLE_DISPLAY';

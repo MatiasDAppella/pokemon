@@ -12,12 +12,12 @@ import { DES, STROKE, DEFENSE, HEALTH, SPEED } from '../../../../constants';
 
 const Filters = () => {
   const dispath = useDispatch()
-  const filteredBy = useSelector(state => state.filteredBy)
+  const displayConfig = useSelector(state => state.displayConfig)
 
   const clickHandler = (event) => {
     const param = event.target.id
     
-    if (filteredBy.method === DES) dispath(sortAscByParam(param))
+    if (displayConfig.method === DES) dispath(sortAscByParam(param))
     else dispath(sortDesByParam(param))
   }
   

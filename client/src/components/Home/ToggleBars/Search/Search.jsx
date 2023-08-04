@@ -1,10 +1,35 @@
 // Styles
 import style from './Search.module.less';
 
+// Hooks
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+// Actions
+import { search } from '../../../../redux/actions';
+
 const SearchBar = () => {
+  const dispath = useDispatch()
+  const [input, setInput] = useState("")
+
+  const handleChange = (event) => {
+    setInput(event.target.value.toLowerCase())
+  };
+
+  const handleSearch = () => {
+    if (!input) return
+    dispath(search(input))
+    setInput("")
+  };
+
+  const handleDisplayToggle = () => {
+
+  };
+
   return <div className={style.searchBar}>
-    <input type="text"/>
-    <button>Search</button>
+    <button onClick={handleDisplayToggle}>Show all</button>
+    <input name="inputsearch" type="text" value={input} onChange={handleChange}/>
+    <button onClick={handleSearch}>Search</button>
   </div>
 };
 

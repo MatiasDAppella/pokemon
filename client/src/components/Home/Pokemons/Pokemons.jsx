@@ -8,10 +8,10 @@ import { useSelector } from 'react-redux';
 import Card from './Card/Card';
 
 const Pokemons = () => {
-  const pokemons = useSelector(state => state.filtered)
+  const display = useSelector(state => state.displayPokemons)
 
   return <ul className={style.container}>{
-    pokemons?.map(pokemon => <Card
+    display?.map(pokemon => <Card
       key={(pokemon.id) ? pokemon.id : pokemon.apiid}
       apiid={pokemon.apiid}
       name={pokemon.name}
