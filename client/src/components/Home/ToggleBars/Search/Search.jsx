@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 // Actions
-import { search } from '../../../../redux/actions';
+import { getSearch } from '../../../../redux/actions';
 
 const SearchBar = () => {
   const dispath = useDispatch()
@@ -18,7 +18,7 @@ const SearchBar = () => {
 
   const handleSearch = () => {
     if (!input) return
-    dispath(search(input))
+    dispath(getSearch(input))
     setInput("")
   };
 

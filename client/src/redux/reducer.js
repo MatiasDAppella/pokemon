@@ -6,7 +6,7 @@ const initialState = {
   search: [],
   detail: {},
   displayPokemons: [],
-  displayConfig: { filter: c.ALL, sort: c.NONE, method: c.NONE }
+  displayConfig: { filter: type.TOGGLE_ALL, sort: c.NONE, method: c.NONE }
 }
 
 export const reducer = (state = initialState, action) => {
@@ -22,24 +22,41 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         displayPokemons: [...state.pokemons].sort((a, b) => a[action.payload] - b[action.payload]),
-        displayConfig: { ...state.displayConfig, sort: action.payload, method: c.ASC }
+        displayConfig: {...state.displayConfig, sort: action.payload, method: c.ASC }
       }
 
     case type.SORT_DES_BY_PARAMS:
       return {
         ...state,
         displayPokemons: [...state.pokemons].sort((a, b) => b[action.payload] - a[action.payload]),
-        displayConfig: { ...state.displayConfig, sort: action.payload, method: c.DES }
+        displayConfig: {...state.displayConfig, sort: action.payload, method: c.DES }
       }
 
-    case type.SEARCH:
+    case type.GET_SEARCH:
       return {
         ...state,
         search: [...action.payload, ...state.search],
         pokemons: [...state.pokemons, ...action.payload],
         displayPokemons: [...action.payload, ...state.search],
-        displayConfig: { filter: c.SEARCH, sort: c.NONE, method: c.NONE }
+        displayConfig: { filter: type.TOGGLE_SEARCH, sort: c.NONE, method: c.NONE }
       }
+    
+    case type.TOGGLE_ALL:
+      return {
+        ...state,
+        displayPokemons: [...state.pokemons],
+        displayConfig: { filter: type.TOGGLE_ALL, sort: c.NONE, method: c.NONE }
+      }
+
+    case type.TOGGLE_SEARCH:
+      return {
+        ...state,
+        displayPokemons: [...state.search],
+        displayConfig: { filter: type.TOGGLE_SEARCH, sort: c.NONE, method: c.NONE }
+      }
+
+    case type.TOGGLE_CATCHED:
+      return { ...state };
 
     default:
       return { ...state };

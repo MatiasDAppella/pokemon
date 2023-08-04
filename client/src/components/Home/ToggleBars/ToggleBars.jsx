@@ -11,7 +11,7 @@ import Search from './Search/Search';
 import Filter from './Filter/Filter';
 
 const ToggleBars = () => {
-  const [toggle, setToggle] = useState(FILTER_BAR)
+  const [toggle, setToggle] = useState(SEARCH_BAR)
 
   const clickHandler = (event) => {
     setToggle(event.target.id)
