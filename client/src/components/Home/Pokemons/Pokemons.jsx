@@ -13,6 +13,7 @@ const Pokemons = () => {
   return <ul className={style.container}>{
     display?.map(pokemon => <Card
       key={(pokemon.id) ? pokemon.id : pokemon.apiid}
+      id={pokemon.id}
       apiid={pokemon.apiid}
       name={pokemon.name}
       image={pokemon.image}

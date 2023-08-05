@@ -1,8 +1,8 @@
-// Styles
+// Styles & images
 import style from './Card.module.less';
+import pokeball from '../../../../assets/img/pokeball.png';
 
 // Hooks
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 // Components
@@ -16,8 +16,7 @@ const Card = (pokemon) => {
     navigate(`/detail/${apiid}`)
   };
 
-  const { apiid, name, image, types, stroke, defense, health, speed } = pokemon
-  const filter = useSelector(state => state.filteredBy)
+  const { id, apiid, name, image, types, stroke, defense, health, speed } = pokemon
 
   return <li className={style.card} onClick={clickHandler}>
     <div className={style.imgBox}>
@@ -32,11 +31,12 @@ const Card = (pokemon) => {
         <h2>{name}</h2>
       </div>
 
-      <img src={image} alt="pokémon name" />
+      <img className={style.image} src={image} alt="pokémon name" />
       <div className={style.shadow}></div>
     </div>
 
     <div className={style.infoBox}>
+      {(id) && <img src={pokeball} alt="" />}
       <ul>{types.map(name => <Tag key={name} type={name}/>)}</ul>
     </div>
   </li>

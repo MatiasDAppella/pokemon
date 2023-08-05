@@ -22,6 +22,7 @@
     // display
     display: flex;
     flex-flow: column wrap;
+
     gap: 1rem;
 
     @media screen and (min-width: 910px) {
@@ -77,6 +78,11 @@
         order: 3;
       }
 
+      // child display
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+
       h1, .bodyInfo, .stats, .tags {
         font-size: larger;
         font-family: "CeraRoundPro";
@@ -118,6 +124,21 @@
           color: rgba(22, 22, 22, .6);
           background-color: aliceblue;
           border-radius: .5rem;
+        }
+      }
+
+      .tags {
+        height: 2rem;
+
+        // display
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          box-sizing: border-box;
+          height: 100%;
+          margin-right: .4rem;
         }
       }
     }

@@ -23,6 +23,10 @@ const Detail = () => {
     return () => dispatch(cleanDetail())
   }, [])
 
+  const handleClick = () => {
+
+  }
+
   return <main className={style.detail}>
     <div className={style.container}>
       <div className={style.imageBox}>
@@ -42,12 +46,13 @@ const Detail = () => {
           <span>Defense: {detail.defense}</span>
           <span>Speed: {detail.speed}</span>
         </div>
-        <div className={style.tags}>{
-          detail.types?.map(type => <Tag key={type} type={type}/>)
-        }</div>
+        <div className={style.tags}>
+          {(detail.id) && <img src={pokeball} alt="" />}
+          {detail.types?.map(type => <Tag key={type} type={type}/>)}
+        </div>
       </div>
         
-      <button className={style.catchButton}>Catch in pokeball</button>
+      <button onClick={handleClick} className={style.catchButton}>Catch in pokeball</button>
     </div>
   </main>
 };
