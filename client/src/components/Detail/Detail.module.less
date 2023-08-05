@@ -6,7 +6,7 @@
   min-width: 460px;
   min-height: 50vh;
   width: 80vw;
-  background-color: bisque;
+  background: linear-gradient(to right, #00B4D8, #34D399);
   border-radius: 1rem;
   margin: auto;
   margin-top: 5vh;
@@ -22,24 +22,51 @@
     // display
     display: flex;
     flex-flow: column wrap;
+    gap: 1rem;
 
     @media screen and (min-width: 910px) {
-      height: 25rem;
-      width: 40rem;
+      height: 26rem;
+      width: 41rem;
     }
 
     .imageBox {
-      background-color: @green;
+      box-sizing: border-box;
+      background-color: aliceblue;
       border-radius: .5rem;
       height: 20rem;
       width: 20rem;
 
       // display
       order: 1;
+      position: relative;
+
+      img {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+
+      span {
+        font-family: "CeraRoundPro";
+        font-size: 10rem;
+        color: @grey;
+        opacity: .3;
+        display: inline-block;
+        position: absolute;
+        padding: 0;
+        margin: 0;
+        top: 3.5rem;
+        right: 0;
+        left: 0;
+      }
     }
   
     .infoBox {
-      background-color: @orange;
+      background-color: rgba(22, 22, 22, .3);
       border-radius: .5rem;
       height: 25rem;
       width: 20rem;
@@ -49,12 +76,60 @@
       @media screen and (min-width: 910px) {
         order: 3;
       }
+
+      h1, .bodyInfo, .stats, .tags {
+        font-size: larger;
+        font-family: "CeraRoundPro";
+        box-sizing: border-box;
+        margin: 0 1.5rem 1.5rem 1.5rem;
+        padding: 0;
+      }
+
+      h1 {
+        font-size: large;
+        color: rgba(22, 22, 22, .8);
+        background-color: aliceblue;
+        border-radius: .5rem;
+        margin-top: 1rem;
+        padding: .6rem;
+      }
+
+      .bodyInfo {
+        // display
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+
+        span {
+          padding: .5rem 1rem .5rem 1rem;
+          color: rgba(22, 22, 22, .6);
+          background-color: aliceblue;
+          border-radius: .5rem;
+        }
+      }
+
+      .stats {
+        display: flex;
+        flex-flow: column;
+        gap: .3rem;
+
+        span {
+          padding: .3rem 1rem .3rem 1rem;
+          color: rgba(22, 22, 22, .6);
+          background-color: aliceblue;
+          border-radius: .5rem;
+        }
+      }
     }
   
-    .catchBox {
+    .catchButton {
+      font-family: "CeraRoundPro";
+      font-size: larger;
+      color: white;
+      border: #222222 solid .1rem;
       background-color: @lightblue;
       border-radius: .5rem;
-      height: 5rem;
+      height: 4rem;
       width: 20rem;
 
       // display
@@ -62,6 +137,15 @@
       @media screen and (min-width: 910px) {
         order: 2;
       }
+
+      // effects
+      transition: .3s;
+    }
+
+    .catchButton:hover {
+      cursor: pointer;
+      background-color: white;
+      color: #222222;
     }
   }
 }
