@@ -13,6 +13,10 @@ export const renderFirstPokemons = () => {
     })).catch()
 };
 
+export const toggleDisplay = (toggle) => ({
+  type: toggle
+});
+
 // sort methods
 export const sortAscByParam = (param) => ({
   type: type.SORT_ASC_BY_PARAMS,
@@ -36,6 +40,18 @@ export const getSearch = (name) => {
     })).catch()
 };
 
-export const toggleDisplay = (toggle) => ({
-  type: toggle
+// detail
+export const getDetail = (id) => {
+  const endpoint = `http://localhost:3001/pokemons/${id}`;
+
+  return (dispatch) => fetch(endpoint)
+    .then(res => res.json())
+    .then(data => dispatch({
+      type: type.GET_DETAIL,
+      payload: data
+    })).catch()
+};
+
+export const cleanDetail = () => ({
+  type: type.CLEAN_DETAIL
 });
