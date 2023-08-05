@@ -1,0 +1,67 @@
+@import '../../less/colors.less';
+@import '../../less/fonts.less';
+
+.detail {
+  max-width: 60rem;
+  min-width: 460px;
+  min-height: 50vh;
+  width: 80vw;
+  background-color: bisque;
+  border-radius: 1rem;
+  margin: auto;
+  margin-top: 5vh;
+
+  // display
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    margin: 2rem 0 2rem 0;
+
+    // display
+    display: flex;
+    flex-flow: column wrap;
+
+    @media screen and (min-width: 910px) {
+      height: 25rem;
+      width: 40rem;
+    }
+
+    .imageBox {
+      background-color: @green;
+      border-radius: .5rem;
+      height: 20rem;
+      width: 20rem;
+
+      // display
+      order: 1;
+    }
+  
+    .infoBox {
+      background-color: @orange;
+      border-radius: .5rem;
+      height: 25rem;
+      width: 20rem;
+
+      // display
+      order: 2;
+      @media screen and (min-width: 910px) {
+        order: 3;
+      }
+    }
+  
+    .catchBox {
+      background-color: @lightblue;
+      border-radius: .5rem;
+      height: 5rem;
+      width: 20rem;
+
+      // display
+      order: 3;
+      @media screen and (min-width: 910px) {
+        order: 2;
+      }
+    }
+  }
+}
