@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Actions
-import { getDetail, cleanDetail } from '../../redux/actions';
+import { getDetail, cleanDetail, catchInPokeball, releasePokemon } from '../../redux/actions';
 
 // Components
 import Tag from '../Home/Pokemons/Card/Tag/Tag';
@@ -24,7 +24,8 @@ const Detail = () => {
   }, [])
 
   const handleClick = () => {
-
+    if (!detail.id) dispatch(catchInPokeball(detail))
+    else dispatch(releasePokemon(detail.id.toString()))
   }
 
   return <main className={style.detail}>

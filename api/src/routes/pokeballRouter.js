@@ -29,9 +29,10 @@ pokeballRouter.post("/:apiid", async (req, res) => {
 // Elimina un pokémon de la database; devuelve el id del pokémon eliminado
 // para su posterior actualización en el estado global de redux.
 // DELETE http://localhost:3001/pokeball
-pokeballRouter.delete("/", async (req, res) => {
+pokeballRouter.delete("/:id", async (req, res) => {
   try {
-    const { id } = req.body
+    const { id } = req.params
+    console.log(id)
     const releasedPokemon = await pokeball.releasePokemon(id)
     return res.status(200).send(releasedPokemon)
   } catch (error) {

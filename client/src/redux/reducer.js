@@ -3,6 +3,7 @@ import * as c from '../constants';
 
 const initialState = {
   pokemons: [],
+  types: [],
   search: [],
   detail: {},
   displayPokemons: [],
@@ -17,6 +18,12 @@ export const reducer = (state = initialState, action) => {
         pokemons: action.payload,
         displayPokemons: action.payload
       };
+
+    case type.CREATE_TYPES_IN_DATABASE:
+      return {
+        ...state,
+        types: action.payload
+      }
     
     case type.SORT_ASC_BY_PARAMS:
       return {
@@ -69,6 +76,29 @@ export const reducer = (state = initialState, action) => {
         ...state,
         detail: {}
       };
+
+    case type.CATCH_POKEMON:
+      return {
+        ...state,
+        pokemons: [...state.pokemons.filter(e => e.apiid != action.payload.apiid), action.payload],
+        displayPokemons: [...state.pokemons.filter(e => e.apiid != action.payload.apiid), action.payload],
+        displayConfig: { filter: type.TOGGLE_ALL, sort: c.NONE, method: c.NONE },
+        detail: action.payload
+      }
+
+    case type.RELEASE_POKEMON:
+      return {
+        ...state,
+        pokemons: [...state.pokemons.map(pokemon => { 
+          if (pokemon.id === action.payload.id) pokemon.id = ""
+          return pokemon
+        })],
+        displayPokemons: [...state.pokemons.map(pokemon => { 
+          if (pokemon.id === action.payload.id) pokemon.id = ""
+          return pokemon
+        })],
+        detail: {...state.detail, id: "" }
+      }
 
     default:
       return { ...state };
