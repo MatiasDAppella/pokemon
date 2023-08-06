@@ -2,7 +2,7 @@ const axios = require('axios');
 
 module.exports = {
   getRandomImage: async () => {
-    const random = Math.floor(Math.random() * 151);
+    const random = Math.floor(Math.random() * 1001);
     const endpoint = `https://pokeapi.co/api/v2/pokemon/${random}`;
   
     return await axios
