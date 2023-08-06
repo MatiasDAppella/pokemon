@@ -70,8 +70,8 @@ const CreateForm = () => {
     }
   };
   
-  const handleSubmit = () => {
-
+  const handleSubmit = (event) => {
+    event.preventDefault()
   };
 
   return <form onSubmit={handleSubmit} className={style.form}>
