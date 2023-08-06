@@ -90,11 +90,11 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         pokemons: [...state.pokemons.map(pokemon => { 
-          if (pokemon.id === action.payload.id) pokemon.id = ""
+          if (pokemon.id === action.payload.id) delete pokemon.id
           return pokemon
         })],
         displayPokemons: [...state.pokemons.map(pokemon => { 
-          if (pokemon.id === action.payload.id) pokemon.id = ""
+          if (pokemon.id === action.payload.id) delete pokemon.id
           return pokemon
         })],
         detail: {...state.detail, id: "" }
