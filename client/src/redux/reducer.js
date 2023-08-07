@@ -63,8 +63,17 @@ export const reducer = (state = initialState, action) => {
       };
 
     case type.TOGGLE_CATCHED:
-      return { ...state };
+      return { ...state,
+        displayPokemons: [...state.pokemons.filter(pokemon => pokemon.id)],
+        displayConfig: { filter: type.TOGGLE_CATCHED, sort: c.NONE, method: c.NONE }
+      };
 
+    case type.TOGGLE_FREE:
+      return { ...state,
+        displayPokemons: [...state.pokemons.filter(pokemon => !pokemon.id)],
+        displayConfig: { filter: type.TOGGLE_FREE, sort: c.NONE, method: c.NONE }
+      };
+  
     case type.GET_DETAIL:
       return {
         ...state,

@@ -13,6 +13,7 @@ export const GET_SEARCH = 'GET_SEARCH';
 export const TOGGLE_ALL = 'ALL';
 export const TOGGLE_SEARCH = 'SEARCH';
 export const TOGGLE_CATCHED = 'CATCHED';
+export const TOGGLE_FREE = 'FREE';
 
 // detail
 export const GET_DETAIL = 'GET_DETAIL';
