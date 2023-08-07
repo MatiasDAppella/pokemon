@@ -4,7 +4,7 @@ import pokeball from '../../assets/img/pokeball.png';
 
 // Hooks
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Actions
@@ -14,6 +14,7 @@ import { getDetail, cleanDetail, catchInPokeball, releasePokemon } from '../../r
 import Tag from '../Home/Pokemons/Card/Tag/Tag';
 
 const Detail = () => {
+  const navigate = useNavigate()
   const { id } = useParams()
   const detail = useSelector(state => state.detail)
   const dispatch = useDispatch()
@@ -26,6 +27,7 @@ const Detail = () => {
   const handleClick = () => {
     if (!detail.id) dispatch(catchInPokeball(detail))
     else dispatch(releasePokemon(detail.id.toString()))
+    if (!detail.apiid) navigate('/home')
   }
 
   return <main className={style.detail}>

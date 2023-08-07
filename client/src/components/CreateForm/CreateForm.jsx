@@ -2,29 +2,35 @@
 import style from './CreateForm.module.less';
 
 // Hooks
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-// Functions
+// Functions & actions
 import { imageRequest } from './image';
 import { validateName, validateInteger, removeInitialCero } from './validate';
+import { catchInPokeball } from '../../redux/actions';
 
 // Components
 import Tag from '../Home/Pokemons/Card/Tag/Tag';
 
 const CreateForm = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [image, setImage] = useState("")
   const [form, setForm] = useState({
     name: "",
+    image: "",
     height: 0,
     weight: 0,
     stroke: 0,
     defense: 0,
     health: 0,
     speed: 0,
-    image,
     types: []
   })
+
+  const [error, setError] = useState({})
 
   const globalTypes = useSelector(state => state.types)
   const [types, setTypes] = useState({ unselected: [], selected: [] })
@@ -34,9 +40,9 @@ const CreateForm = () => {
   }
 
   useEffect(() => {
-    imageRequest(setImage)
+    if (!image) imageRequest(setImage)
     setTypes({...types, unselected: [...globalTypes.filter(e => e.name !== "unknown").map(e => e.name)]})
-  }, [])
+  }, [globalTypes])
 
   const handleSelection = (name) => {
     if (types.unselected.includes(name)){
@@ -60,6 +66,8 @@ const CreateForm = () => {
     switch (property){
       case "name":
         if (validateName(value)) setForm({...form, [property]: value.toLowerCase() })
+        if (value === "") setError({ name: "Your pokemon should have a name" })
+        else setError({})
         break;
 
       default:
@@ -72,6 +80,13 @@ const CreateForm = () => {
   
   const handleSubmit = (event) => {
     event.preventDefault()
+    if (error == {}) return
+    if (!types.selected.length) form.types = ["unknown"]
+    else form.types = types.selected
+    form.image = image
+
+    dispatch(catchInPokeball(form))
+    navigate('/home')
   };
 
   return <form onSubmit={handleSubmit} className={style.form}>
@@ -116,15 +131,15 @@ const CreateForm = () => {
         </div>
       </div>
       
-      {(types.selected.length > 0) && <div className={style.tagsBox}>{
+      <div className={(types.selected.length > 0) ? style.tagsBox : style.tagsBoxMuted}>{
         types.selected?.map(type => {if (type !== "unknown") return <Tag handleSelection={handleSelection} key={type} type={type}/>})
-      }</div>}
+      }</div>
 
       <div className={(types.unselected.length > 17) ? style.tagsBox : style.tagsBoxMuted}>{
         types.unselected?.map(type => {if (type !== "unknown") return <Tag handleSelection={handleSelection} key={type} type={type}/>})
       }</div>
 
-      <button className={style.submitButton}>Done</button>
+      <button onClick={handleSubmit} className={style.submitButton}>Done</button>
     </div>
 
   </form>

@@ -46,7 +46,7 @@ module.exports = (sequelize) => {
     apiid: {
       type: DataTypes.STRING(4),
       allowNull: false,
-      defaultValue: "none"
+      defaultValue: ""
     }
   });
 };

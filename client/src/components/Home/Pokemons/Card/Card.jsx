@@ -13,6 +13,10 @@ const Card = (pokemon) => {
   const navigate = useNavigate()
 
   const clickHandler = () => {
+    if (id) {
+      navigate(`/detail/${id}`)
+      return
+    }
     navigate(`/detail/${apiid}`)
   };
 
