@@ -10,7 +10,8 @@ const {
 const {
   searchInPokeball,
   searchInApi,
-  getFromPokeball
+  getFromPokeball,
+  getAllFromPokeball
 } = require('../utils/searchHandlers');
 
 class pokemonsController {
@@ -35,7 +36,9 @@ class pokemonsController {
 
       pokemonsWithInfo.push(pokemonData)
     }
-    return pokemonsWithInfo
+
+    const fromPokeball = await getAllFromPokeball()
+    return [...fromPokeball, ...pokemonsWithInfo.filter(e => !e.id)].sort((a, b) => a.name.localeCompare(b.name))
   };
 
   getPokemonDetail = async (id) => {

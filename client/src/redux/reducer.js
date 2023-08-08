@@ -163,6 +163,21 @@ export const reducer = (state = initialState, action) => {
         displayConfig: {...state.displayConfig, sort: "speed", method: "DES" }
       };
 
+    // alphabetically -----------------------------------------------------------------------------------
+    case type.SORT_ASC_ALPHABETICALLY:
+      return {
+        ...state,
+        displayPokemons: [...state.displayPokemons].sort((a, b) => a.name.localeCompare(b.name)),
+        displayConfig: {...state.displayConfig, sort: "alpha", method: "ASC" }
+      };
+
+    case type.SORT_DES_ALPHABETICALLY:
+      return {
+        ...state,
+        displayPokemons: [...state.displayPokemons].sort((a, b) => b.name.localeCompare(a.name)),
+        displayConfig: {...state.displayConfig, sort: "alpha", method: "DES" }
+      };
+
 
     // DEFAULT CASE =====================================================================================
     default:

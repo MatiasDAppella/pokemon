@@ -1,7 +1,7 @@
 // Styles & icons
 import style from './Sort.module.less';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHandFist, faShieldHalved, faHeart, faDragon } from '@fortawesome/free-solid-svg-icons';
+import { faHandFist, faShieldHalved, faHeart, faDragon, faDiamond } from '@fortawesome/free-solid-svg-icons';
 
 // Hooks
 import { useDispatch } from 'react-redux';
@@ -16,7 +16,9 @@ import {
   sortAscByHealth,
   sortDesByHealth,
   sortAscBySpeed,
-  sortDesBySpeed
+  sortDesBySpeed,
+  sortAscAlpha,
+  sortDesAlpha
 } from '../../../../redux/actions';
 
 const Sort = () => {
@@ -25,7 +27,8 @@ const Sort = () => {
     stroke: true,
     defense: true,
     health: true,
-    speed: true
+    speed: true,
+    alpha: true
   }
   const [toogleMethod, setToggleMethod] = useState(initialMethods)
 
@@ -49,6 +52,10 @@ const Sort = () => {
         if (!toogleMethod.speed) dispath(sortAscBySpeed())
         else dispath(sortDesBySpeed())
         return setToggleMethod({ ...initialMethods, speed: !toogleMethod.speed })
+      case "ALPHA":
+        if (!toogleMethod.alpha) dispath(sortAscAlpha())
+        else dispath(sortDesAlpha())
+        return setToggleMethod({ ...initialMethods, alpha: !toogleMethod.alpha })
     }
   };
   
@@ -57,6 +64,7 @@ const Sort = () => {
     <button id={"DEFENSE"} onClick={clickHandler}><FontAwesomeIcon className={style.icon} icon={faShieldHalved}/>Defense</button>
     <button id={"HEALTH"} onClick={clickHandler}><FontAwesomeIcon className={style.icon} icon={faHeart}/>Health</button>
     <button id={"SPEED"} onClick={clickHandler}><FontAwesomeIcon className={style.icon} icon={faDragon}/>Speed</button>
+    <button id={"ALPHA"} onClick={clickHandler}><FontAwesomeIcon className={style.icon} icon={faDiamond}/>Alphabetically</button>
   </div>
 };
 

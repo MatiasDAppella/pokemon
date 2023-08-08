@@ -134,3 +134,12 @@ export const sortAscBySpeed = () => ({
 export const sortDesBySpeed = () => ({
   type: type.SORT_DES_BY_SPEED
 });
+
+// aphabetically
+export const sortAscAlpha = () => ({
+  type: type.SORT_ASC_ALPHABETICALLY
+});
+
+export const sortDesAlpha = () => ({
+  type: type.SORT_DES_ALPHABETICALLY
+});
