@@ -17,7 +17,7 @@ const Sort = () => {
   const clickHandler = (event) => {
     const param = event.target.id
     
-    if (displayConfig.method === DES) dispath(sortAscByParam(param))
+    if (displayConfig.method === DES && displayConfig.sort === param) dispath(sortAscByParam(param))
     else dispath(sortDesByParam(param))
   }
   

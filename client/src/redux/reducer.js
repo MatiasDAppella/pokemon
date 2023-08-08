@@ -28,14 +28,14 @@ export const reducer = (state = initialState, action) => {
     case type.SORT_ASC_BY_PARAMS:
       return {
         ...state,
-        displayPokemons: [...state.pokemons].sort((a, b) => a[action.payload] - b[action.payload]),
+        displayPokemons: [...state.displayPokemons].sort((a, b) => a[action.payload] - b[action.payload]),
         displayConfig: {...state.displayConfig, sort: action.payload, method: c.ASC }
       };
 
     case type.SORT_DES_BY_PARAMS:
       return {
         ...state,
-        displayPokemons: [...state.pokemons].sort((a, b) => b[action.payload] - a[action.payload]),
+        displayPokemons: [...state.displayPokemons].sort((a, b) => b[action.payload] - a[action.payload]),
         displayConfig: {...state.displayConfig, sort: action.payload, method: c.DES }
       };
 
@@ -89,9 +89,9 @@ export const reducer = (state = initialState, action) => {
     case type.CATCH_POKEMON:
       return {
         ...state,
-        search: [...state.search.filter(e => e.apiid != action.payload.apiid), action.payload],
+        search: [...state.search.filter(e => e.apiid != action.payload.apiid)],
         pokemons: [...state.pokemons.filter(e => e.apiid != action.payload.apiid), action.payload],
-        displayPokemons: [...state.pokemons.filter(e => e.apiid != action.payload.apiid), action.payload],
+        displayPokemons: [...state.displayPokemons.filter(e => e.apiid != action.payload.apiid), action.payload],
         displayConfig: { filter: type.TOGGLE_ALL, sort: c.NONE, method: c.NONE },
         detail: action.payload
       }
@@ -107,10 +107,11 @@ export const reducer = (state = initialState, action) => {
           if (pokemon.id === action.payload.id) delete pokemon.id
           return pokemon
         }).filter(e => e.id||e.apiid)],
-        displayPokemons: [...state.pokemons.map(pokemon => { 
+        displayPokemons: [...state.displayPokemons.map(pokemon => { 
           if (pokemon.id === action.payload.id) delete pokemon.id
           return pokemon
         }).filter(e => e.id||e.apiid)],
+        displayConfig: { filter: type.TOGGLE_ALL, sort: c.NONE, method: c.NONE },
         detail: {...state.detail, id: "" }
       }
 
