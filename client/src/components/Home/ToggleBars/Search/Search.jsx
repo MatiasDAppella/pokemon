@@ -3,13 +3,15 @@ import style from './Search.module.less';
 
 // Hooks
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-// Actions
+// Actions & functions
 import { getSearch } from '../../../../redux/actions';
+import { validateState } from './validate';
 
 const SearchBar = () => {
   const dispath = useDispatch()
+  const actualPokemons = useSelector(state => state.pokemons)
   const [input, setInput] = useState("")
 
   const handleChange = (event) => {
@@ -18,6 +20,8 @@ const SearchBar = () => {
 
   const handleSearch = () => {
     if (!input) return
+    // const action = validateState(actualPokemons)
+    // console.log(action)
     dispath(getSearch(input))
     setInput("")
   };

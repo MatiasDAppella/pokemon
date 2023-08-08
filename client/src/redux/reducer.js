@@ -42,9 +42,9 @@ export const reducer = (state = initialState, action) => {
     case type.GET_SEARCH:
       return {
         ...state,
-        search: [...action.payload, ...state.search],
-        pokemons: [...state.pokemons, ...action.payload],
-        displayPokemons: [...action.payload, ...state.search],
+        search: [...action.payload.filter(pokemon => state.search.every(e => e.apiid !== pokemon.apiid && (e.id !== pokemon.id || !pokemon.id))), ...state.search],
+        pokemons: [...state.pokemons, ...action.payload.filter(pokemon => state.pokemons.every(e => e.apiid !== pokemon.apiid && (e.id !== pokemon.id || !pokemon.id)))],
+        displayPokemons: [...action.payload.filter(pokemon => state.search.every(e => e.apiid !== pokemon.apiid && (e.id !== pokemon.id || !pokemon.id))), ...state.search],
         displayConfig: { filter: type.TOGGLE_SEARCH, sort: c.NONE, method: c.NONE }
       };
     
@@ -89,6 +89,7 @@ export const reducer = (state = initialState, action) => {
     case type.CATCH_POKEMON:
       return {
         ...state,
+        search: [...state.search.filter(e => e.apiid != action.payload.apiid), action.payload],
         pokemons: [...state.pokemons.filter(e => e.apiid != action.payload.apiid), action.payload],
         displayPokemons: [...state.pokemons.filter(e => e.apiid != action.payload.apiid), action.payload],
         displayConfig: { filter: type.TOGGLE_ALL, sort: c.NONE, method: c.NONE },
@@ -98,6 +99,10 @@ export const reducer = (state = initialState, action) => {
     case type.RELEASE_POKEMON:
       return {
         ...state,
+        search: [...state.search.map(pokemon => { 
+          if (pokemon.id === action.payload.id) delete pokemon.id
+          return pokemon
+        }).filter(e => e.id||e.apiid)],
         pokemons: [...state.pokemons.map(pokemon => { 
           if (pokemon.id === action.payload.id) delete pokemon.id
           return pokemon
