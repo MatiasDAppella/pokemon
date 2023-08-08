@@ -5,9 +5,8 @@ import style from './Search.module.less';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-// Actions & functions
+// Actions
 import { getSearch } from '../../../../redux/actions';
-import { validateState } from './validate';
 
 const SearchBar = () => {
   const dispath = useDispatch()
@@ -20,8 +19,6 @@ const SearchBar = () => {
 
   const handleSearch = () => {
     if (!input) return
-    // const action = validateState(actualPokemons)
-    // console.log(action)
     dispath(getSearch(input))
     setInput("")
   };
