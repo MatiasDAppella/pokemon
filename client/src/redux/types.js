@@ -2,10 +2,6 @@
 export const RENDER_FIRST_POKEMONS = 'RENDER_FIRST_POKEMONS';
 export const CREATE_TYPES_IN_DATABASE = 'CREATE_TYPES_IN_DATABASE';
 
-// filters
-export const SORT_ASC_BY_PARAMS = 'SORT_ASC_BY_PARAMS';
-export const SORT_DES_BY_PARAMS = 'SORT_DES_BY_PARAMS';
-
 // search
 export const GET_SEARCH = 'GET_SEARCH';
 
@@ -22,3 +18,13 @@ export const CLEAN_DETAIL = 'CLEAN_DETAIL';
 // pokeball catch/release
 export const CATCH_POKEMON = 'CATCH_POKEMON';
 export const RELEASE_POKEMON = 'RELEASE_POKEMON';
+
+// sort methods
+export const SORT_ASC_BY_STROKE = 'SORT_ASC_BY_STROKE';
+export const SORT_DES_BY_STROKE = 'SORT_DES_BY_STROKE';
+export const SORT_ASC_BY_DEFENSE = 'SORT_ASC_BY_DEFENSE';
+export const SORT_DES_BY_DEFENSE = 'SORT_DES_BY_DEFENSE';
+export const SORT_ASC_BY_HEALTH = 'SORT_ASC_BY_HEALTH';
+export const SORT_DES_BY_HEALTH = 'SORT_DES_BY_HEALTH';
+export const SORT_ASC_BY_SPEED = 'SORT_ASC_BY_SPEED';
+export const SORT_DES_BY_SPEED = 'SORT_DES_BY_SPEED';

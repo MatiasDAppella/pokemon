@@ -25,20 +25,6 @@ export const reducer = (state = initialState, action) => {
         types: action.payload
       }
     
-    case type.SORT_ASC_BY_PARAMS:
-      return {
-        ...state,
-        displayPokemons: [...state.displayPokemons].sort((a, b) => a[action.payload] - b[action.payload]),
-        displayConfig: {...state.displayConfig, sort: action.payload, method: c.ASC }
-      };
-
-    case type.SORT_DES_BY_PARAMS:
-      return {
-        ...state,
-        displayPokemons: [...state.displayPokemons].sort((a, b) => b[action.payload] - a[action.payload]),
-        displayConfig: {...state.displayConfig, sort: action.payload, method: c.DES }
-      };
-
     case type.GET_SEARCH:
       return {
         ...state,
@@ -114,7 +100,71 @@ export const reducer = (state = initialState, action) => {
         displayConfig: { filter: type.TOGGLE_ALL, sort: c.NONE, method: c.NONE },
         detail: {...state.detail, id: "" }
       }
+    
 
+    // sort methods =====================================================================================
+    // stroke -------------------------------------------------------------------------------------------
+    case type.SORT_ASC_BY_STROKE:
+      return {
+        ...state,
+        displayPokemons: [...state.displayPokemons].sort((a, b) => a.stroke - b.stroke),
+        displayConfig: {...state.displayConfig, sort: c.STROKE, method: c.ASC }
+      };
+
+    case type.SORT_DES_BY_STROKE:
+      return {
+        ...state,
+        displayPokemons: [...state.displayPokemons].sort((a, b) => b.stroke - a.stroke),
+        displayConfig: {...state.displayConfig, sort: c.STROKE, method: c.DES }
+      };
+    
+    // defense ------------------------------------------------------------------------------------------
+    case type.SORT_ASC_BY_DEFENSE:
+      return {
+        ...state,
+        displayPokemons: [...state.displayPokemons].sort((a, b) => a.defense - b.defense),
+        displayConfig: {...state.displayConfig, sort: c.DEFENSE, method: c.ASC }
+      };
+
+    case type.SORT_DES_BY_DEFENSE:
+      return {
+        ...state,
+        displayPokemons: [...state.displayPokemons].sort((a, b) => b.defense - a.defense),
+        displayConfig: {...state.displayConfig, sort: c.DEFENSE, method: c.DES }
+      };
+    
+    // health -------------------------------------------------------------------------------------------
+    case type.SORT_ASC_BY_HEALTH:
+      return {
+        ...state,
+        displayPokemons: [...state.displayPokemons].sort((a, b) => a.health - b.health),
+        displayConfig: {...state.displayConfig, sort: c.HEALTH, method: c.ASC }
+      };
+
+    case type.SORT_DES_BY_HEALTH:
+      return {
+        ...state,
+        displayPokemons: [...state.displayPokemons].sort((a, b) => b.health - a.health),
+        displayConfig: {...state.displayConfig, sort: c.HEALTH, method: c.DES }
+      };
+
+    // speed --------------------------------------------------------------------------------------------
+    case type.SORT_ASC_BY_SPEED:
+      return {
+        ...state,
+        displayPokemons: [...state.displayPokemons].sort((a, b) => a.speed - b.speed),
+        displayConfig: {...state.displayConfig, sort: c.SPEED, method: c.ASC }
+      };
+
+    case type.SORT_DES_BY_SPEED:
+      return {
+        ...state,
+        displayPokemons: [...state.displayPokemons].sort((a, b) => b.speed - a.speed),
+        displayConfig: {...state.displayConfig, sort: c.SPEED, method: c.DES }
+      };
+
+
+    // DEFAULT CASE =====================================================================================
     default:
       return { ...state };
   };
