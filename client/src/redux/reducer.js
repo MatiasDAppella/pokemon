@@ -108,14 +108,14 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         displayPokemons: [...state.displayPokemons].sort((a, b) => a.stroke - b.stroke),
-        displayConfig: {...state.displayConfig, sort: c.STROKE, method: c.ASC }
+        displayConfig: {...state.displayConfig, sort: "stroke", method: "ASC" }
       };
 
     case type.SORT_DES_BY_STROKE:
       return {
         ...state,
         displayPokemons: [...state.displayPokemons].sort((a, b) => b.stroke - a.stroke),
-        displayConfig: {...state.displayConfig, sort: c.STROKE, method: c.DES }
+        displayConfig: {...state.displayConfig, sort: "stroke", method: "DES" }
       };
     
     // defense ------------------------------------------------------------------------------------------
@@ -123,14 +123,14 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         displayPokemons: [...state.displayPokemons].sort((a, b) => a.defense - b.defense),
-        displayConfig: {...state.displayConfig, sort: c.DEFENSE, method: c.ASC }
+        displayConfig: {...state.displayConfig, sort: "defense", method: "ASC" }
       };
 
     case type.SORT_DES_BY_DEFENSE:
       return {
         ...state,
         displayPokemons: [...state.displayPokemons].sort((a, b) => b.defense - a.defense),
-        displayConfig: {...state.displayConfig, sort: c.DEFENSE, method: c.DES }
+        displayConfig: {...state.displayConfig, sort: "defense", method: "DES" }
       };
     
     // health -------------------------------------------------------------------------------------------
@@ -138,14 +138,14 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         displayPokemons: [...state.displayPokemons].sort((a, b) => a.health - b.health),
-        displayConfig: {...state.displayConfig, sort: c.HEALTH, method: c.ASC }
+        displayConfig: {...state.displayConfig, sort: "health", method: "ASC" }
       };
 
     case type.SORT_DES_BY_HEALTH:
       return {
         ...state,
         displayPokemons: [...state.displayPokemons].sort((a, b) => b.health - a.health),
-        displayConfig: {...state.displayConfig, sort: c.HEALTH, method: c.DES }
+        displayConfig: {...state.displayConfig, sort: "health", method: "DES" }
       };
 
     // speed --------------------------------------------------------------------------------------------
@@ -153,14 +153,14 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         displayPokemons: [...state.displayPokemons].sort((a, b) => a.speed - b.speed),
-        displayConfig: {...state.displayConfig, sort: c.SPEED, method: c.ASC }
+        displayConfig: {...state.displayConfig, sort: "speed", method: "ASC" }
       };
 
     case type.SORT_DES_BY_SPEED:
       return {
         ...state,
         displayPokemons: [...state.displayPokemons].sort((a, b) => b.speed - a.speed),
-        displayConfig: {...state.displayConfig, sort: c.SPEED, method: c.DES }
+        displayConfig: {...state.displayConfig, sort: "speed", method: "DES" }
       };
 
 

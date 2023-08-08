@@ -21,33 +21,34 @@ import {
 
 const Sort = () => {
   const dispath = useDispatch()
-  const [toogleMethod, setToggleMethod] = useState({
+  const initialMethods = {
     stroke: true,
     defense: true,
     health: true,
     speed: true
-  })
+  }
+  const [toogleMethod, setToggleMethod] = useState(initialMethods)
 
   const clickHandler = (event) => {
     const sort = event.target.id
 
     switch (sort){
       case "STROKE":
-        if (toogleMethod.stroke) dispath(sortAscByStroke())
+        if (!toogleMethod.stroke) dispath(sortAscByStroke())
         else dispath(sortDesByStroke())
-        return setToggleMethod({...toogleMethod, stroke: !toogleMethod.stroke})
+        return setToggleMethod({ ...initialMethods, stroke: !toogleMethod.stroke })
       case "DEFENSE":
-        if (toogleMethod.defense) dispath(sortAscByDefense())
+        if (!toogleMethod.defense) dispath(sortAscByDefense())
         else dispath(sortDesByDefense())
-        return setToggleMethod({...toogleMethod, defense: !toogleMethod.defense})
+        return setToggleMethod({ ...initialMethods, defense: !toogleMethod.defense })
       case "HEALTH":
-        if (toogleMethod.health) dispath(sortAscByHealth())
+        if (!toogleMethod.health) dispath(sortAscByHealth())
         else dispath(sortDesByHealth())
-        return setToggleMethod({...toogleMethod, health: !toogleMethod.health})
+        return setToggleMethod({ ...initialMethods, health: !toogleMethod.health })
       case "SPEED":
-        if (toogleMethod.speed) dispath(sortAscBySpeed())
+        if (!toogleMethod.speed) dispath(sortAscBySpeed())
         else dispath(sortDesBySpeed())
-        return setToggleMethod({...toogleMethod, speed: !toogleMethod.speed})
+        return setToggleMethod({ ...initialMethods, speed: !toogleMethod.speed })
     }
   };
   
