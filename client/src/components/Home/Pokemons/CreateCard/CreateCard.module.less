@@ -7,7 +7,7 @@
   height: 15rem;
   border: @grey solid .1rem;
   border-radius: 1rem;
-  background-color: rgba(0, 0, 0, .1);
+  background: linear-gradient(to left top, rgb(236, 72, 153), rgb(239, 68, 68), rgb(234, 179, 8));
   box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
 
   // display
@@ -20,8 +20,8 @@
     margin-top: .5rem;
     padding: 0 1rem;
     color: #454545;
-    border: @grey solid .1rem;
-    background-color: rgba(50, 50, 50, 0.1);
+    background-color: rgba(255, 255, 255, .8);
+    box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
     border-radius: 1rem;
   }
 
@@ -33,9 +33,19 @@
 .createCard:hover {
   cursor: pointer;
   animation: jump .2s;
+
+  img {
+    animation: inertia .2s ease .1s;
+  }
 }
 
 @keyframes jump {
+  0%   { transform: translate(0, 0) }
+  50%  { transform: translate(0, -1rem) }
+  100% { transform: translate(0, 0) }
+}
+
+@keyframes inertia {
   0%   { transform: translate(0, 0) }
   50%  { transform: translate(0, -1rem) }
   100% { transform: translate(0, 0) }
