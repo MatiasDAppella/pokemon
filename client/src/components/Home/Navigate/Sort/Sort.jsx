@@ -20,54 +20,86 @@ import {
   sortAscAlpha,
   sortDesAlpha
 } from '../../../../redux/actions';
+import { ALPHA, STROKE, DEFENSE, HEALTH, SPEED } from '../../../../constants';
 
 const Sort = () => {
   const dispatch = useDispatch()
-  const initialMethods = {
-    stroke: true,
-    defense: true,
-    health: true,
-    speed: true,
-    alpha: true
-  }
-  const [toogleMethod, setToggleMethod] = useState(initialMethods)
+  const [lastSort, setLastSort] = useState("")
+  const [toggle, setToggle] = useState(true)
 
-  const clickHandler = (event) => {
-    const sort = event.target.id
+  const clickHandler = () => {
+    setToggle(!toggle)
+    switch (lastSort){
+      case "Alphabetically":
+        return (toggle)
+        ? dispatch(sortAscAlpha())
+        : dispatch(sortDesAlpha())
+      case "Stroke":
+        return (toggle)
+        ? dispatch(sortAscByStroke())
+        : dispatch(sortDesByStroke())
+      case "Defense":
+        return (toggle)
+        ? dispatch(sortAscByDefense())
+        : dispatch(sortDesByDefense())
+      case "Health":
+        return (toggle)
+        ? dispatch(sortAscByHealth())
+        : dispatch(sortDesByHealth())
+      case "Speed":
+        return (toggle)
+        ? dispatch(sortAscBySpeed())
+        : dispatch(sortDesBySpeed())
+    }
+  }
+
+  const changeHandler = (event) => {
+    const sort = event.target.value
 
     switch (sort){
-      case "STROKE":
-        if (!toogleMethod.stroke) dispatch(sortAscByStroke())
-        else dispatch(sortDesByStroke())
-        return setToggleMethod({ ...initialMethods, stroke: !toogleMethod.stroke })
-      case "DEFENSE":
-        if (!toogleMethod.defense) dispatch(sortAscByDefense())
-        else dispatch(sortDesByDefense())
-        return setToggleMethod({ ...initialMethods, defense: !toogleMethod.defense })
-      case "HEALTH":
-        if (!toogleMethod.health) dispatch(sortAscByHealth())
-        else dispatch(sortDesByHealth())
-        return setToggleMethod({ ...initialMethods, health: !toogleMethod.health })
-      case "SPEED":
-        if (!toogleMethod.speed) dispatch(sortAscBySpeed())
-        else dispatch(sortDesBySpeed())
-        return setToggleMethod({ ...initialMethods, speed: !toogleMethod.speed })
-      case "ALPHA":
-        if (!toogleMethod.alpha) dispatch(sortAscAlpha())
-        else dispatch(sortDesAlpha())
-        return setToggleMethod({ ...initialMethods, alpha: !toogleMethod.alpha })
+      case "Alphabetically":
+        if (lastSort !== sort) setLastSort(sort)
+        return (toggle)
+          ? dispatch(sortDesAlpha())
+          : dispatch(sortAscAlpha())
+      case "Stroke":
+        if (lastSort !== sort) setLastSort(sort)
+        return (toggle)
+          ? dispatch(sortDesByStroke())
+          : dispatch(sortAscByStroke())
+      case "Defense":
+        if (lastSort !== sort) setLastSort(sort)
+        return (toggle)
+          ? dispatch(sortDesByDefense())
+          : dispatch(sortAscByDefense())
+      case "Health":
+        if (lastSort !== sort) setLastSort(sort)
+        return (toggle)
+          ? dispatch(sortDesByHealth())
+          : dispatch(sortAscByHealth())
+      case "Speed":
+        if (lastSort !== sort) setLastSort(sort)
+        return (toggle)
+          ? dispatch(sortDesBySpeed())
+          : dispatch(sortAscBySpeed())
     }
-  };
+  }
 
-  return <div className={style.sortBox}>
+  return <div className={style.sort}>
     <div className={style.separator}/>
-    <ul>
-      <li id={"ALPHA"} onClick={clickHandler}>Alphabetically</li>
-      <li id={"STROKE"} onClick={clickHandler}>Stroke</li>
-      <li id={"DEFENSE"} onClick={clickHandler}>Defense</li>
-      <li id={"HEALTH"} onClick={clickHandler}>Health</li>
-      <li id={"SPEED"} onClick={clickHandler}>Speed</li>
-    </ul>
+    <div className={style.sortBox}>
+      <select onChange={changeHandler}>
+        <option disabled={true}>Select order</option>
+        <option>Alphabetically</option>
+        <option>Stroke</option>
+        <option>Defense</option>
+        <option>Health</option>
+        <option>Speed</option>
+      </select>
+      <button className={style.btn} onClick={clickHandler}>
+        {(toggle) ? "DES" : "ASC"}
+      </button>
+    </div>
   </div>
 };
 

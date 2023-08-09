@@ -23,8 +23,10 @@ const Search = () => {
   };
 
   return <div className={style.search}>
-    <button className={style.btn} onClick={handleSearch}>Search</button>
-    <input type="text" value={input} onChange={handleChange}/>
+    <div className={style.searchBox}>
+      <button className={style.btn} onClick={handleSearch}>Search</button>
+      <input type="text" value={input} onChange={handleChange}/>
+    </div>
     <div className={style.separator}/>
   </div>
 };
