@@ -1,0 +1,47 @@
+@import '../../../../less/colors.less';
+@import '../../../../less/fonts.less';
+
+.search {
+  box-sizing: border-box;
+  height: 100%;
+
+  // display
+  display: flex;
+  align-items: center;
+
+  .btn {
+    transition: .1s;
+    font-family: @defaultFont;
+    font-size: larger;
+    color: white;
+
+    margin: 0 1rem;
+    padding: .5rem 1rem;
+    background-color: @darkblue;
+    border: white solid .1rem;
+    border-radius: .1rem;
+  }
+
+  .btn:hover {
+    cursor: pointer;
+    background-color: white;
+    color: @visualStudio;
+  }
+
+  input {
+    height: 40%;
+    width: 100%;
+    margin-right: 1rem;
+    border: white solid .1rem;
+
+    font-family: @defaultFont;
+    font-size: larger;
+  }
+
+  .separator {
+    height: 70%;
+    width: .2rem;
+    background-color: white;
+    border-radius: 1rem;
+  }
+}

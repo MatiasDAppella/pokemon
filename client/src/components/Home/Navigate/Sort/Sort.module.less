@@ -1,0 +1,55 @@
+@import '../../../../less/colors.less';
+@import '../../../../less/fonts.less';
+
+.sortBox {
+  box-sizing: border-box;
+  height: 100%;
+
+  // display
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  ul {
+    padding: 0;
+    margin: 0 1rem;
+    width: 100%;
+
+    font-family: @defaultFont;
+    font-size: larger;
+    color: white;
+    list-style: none;
+
+    // display
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    column-gap: 1rem;
+  }
+
+  @media screen and (max-width: 870px) {
+    ul {
+      font-size: small;
+      justify-content: center;
+    }
+  }
+
+  li {
+    transition: .1s;
+    padding: .5rem 1rem;
+    border-radius: .1rem;
+  }
+
+  li:hover {
+    cursor: pointer;
+    background-color: white;
+    color: @visualStudio;
+  }
+}
+
+.separator {
+  height: 70%;
+  width: .2rem;
+  background-color: white;
+  border-radius: 1rem;
+}

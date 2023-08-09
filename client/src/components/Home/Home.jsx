@@ -7,11 +7,12 @@ import { useState } from 'react';
 // Components
 import ToggleBars from './ToggleBars/ToggleBars';
 import Pokemons from './Pokemons/Pokemons';
+import Navigate from './Navigate/Navigate';
 
 const Home = () => {
 
   return <main className={style.main}>
-    <ToggleBars/>
+    <Navigate/>
     <Pokemons/>
   </main>
 };

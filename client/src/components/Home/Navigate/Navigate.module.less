@@ -1,0 +1,102 @@
+@import '../../../less/colors.less';
+@import '../../../less/fonts.less';
+
+.navigate {
+  height: 10rem;
+  background-color: @visualStudio;
+  margin-bottom: 3rem;
+
+  // display
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  box-sizing: border-box;
+  height: 100%;
+  width: 90%;
+}
+
+// ----------------------------------------------------
+.filterBox {
+  box-sizing: border-box;
+  height: 40%;
+
+  // display
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  img {
+    height: 50%;
+
+    @media screen and (max-width: 670px) {
+      display: none;
+    }
+  }
+
+  ul {
+    padding: 0;
+    margin: 0 1rem;
+    width: 100%;
+
+    font-family: @defaultFont;
+    font-size: larger;
+    color: white;
+    list-style: none;
+
+    // display
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  li {
+    transition: .1s;
+    padding: .5rem 1rem;
+    border-radius: .1rem;
+  }
+
+  li:hover {
+    cursor: pointer;
+    background-color: white;
+    color: @visualStudio;
+  }
+}
+
+// ----------------------------------------------------
+.toggleBars {
+  overflow: hidden;
+  box-sizing: border-box;
+  height: 60%;
+
+  // display
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    transition: .1s;
+    font-family: @defaultFont;
+    font-size: larger;
+    color: white;
+
+    margin: 0 1rem;
+    padding: .5rem 1rem;
+    background-color: @lightblue;
+    border: white solid .1rem;
+    border-radius: .1rem;
+  }
+
+  button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: @visualStudio;
+  }
+}
+
+.displayBox {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
