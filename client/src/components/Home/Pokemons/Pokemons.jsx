@@ -6,13 +6,18 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
+// types
+import { TOGGLE_ALL, TOGGLE_CATCHED } from '../../../redux/types';
+
 // Components
 import Card from './Card/Card';
 import CreateCard from './CreateCard/CreateCard';
 import Loading from '../../Loading/Loading';
+import Empty from '../../Empty/Empty';
 
 const Pokemons = () => {
   const [loaded, setLoaded] = useState(false)
+  const filter = useSelector(state => state.displayConfig.filter)
   const display = useSelector(state => state.displayPokemons)
   const [ button, setButton ] = useState(true)
   
@@ -40,8 +45,9 @@ const Pokemons = () => {
   };
 
   return <><ul className={style.container}>
-    <CreateCard/>
+    {(filter === TOGGLE_ALL || filter === TOGGLE_CATCHED) && <CreateCard/>}
     {(!loaded) && <Loading/>}
+    {(loaded) && (display.length === 0) && <Empty/>}
     {
       display?.slice(0, pages.actual * pokemonsPerPage).map(pokemon => <Card
         key={(pokemon.id) ? pokemon.id : pokemon.apiid}
