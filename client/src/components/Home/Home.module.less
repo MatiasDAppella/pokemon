@@ -1,8 +1,16 @@
 @import '../../less/colors.less';
+@import '../../less/fonts.less';
 
-.main {
+.homePage {
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   .toggleBar {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: end;
     gap: 10rem;
@@ -19,6 +27,54 @@
     button:hover {
       cursor: pointer;
       transform: scale(1.1) translate(0, -.1rem);
+    }
+  }
+
+  footer {
+    position: relative;
+    bottom: 0;
+    height: 12rem;
+    width: 100%;
+    background: linear-gradient(to right, #00B4D8, #34D399);
+
+    .footerContainer {
+      box-sizing: border-box;
+      margin: 0 10%;
+      height: 100%;
+
+      // display
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h3 {
+        font-family: @defaultFont;
+        color: white;
+      }
+
+      .socialLinks {
+        display: flex;
+        justify-content: space-evenly;
+        width: 160px;
+        padding: 5px;
+    
+        background-color: rgba(255, 255, 255, .6);
+        border-radius: .5rem;
+      }
+    
+      .githubIcon, .instagramIcon {
+        opacity: .8;
+        height: 50px;
+        width: 50px;
+        margin-top: 5px;
+    
+        transition: all 0.3s;
+      }
+    
+      .githubIcon:hover, .instagramIcon:hover {
+        transform: scale(1.1) rotate(2deg);
+        cursor: pointer;
+      }
     }
   }
 }
