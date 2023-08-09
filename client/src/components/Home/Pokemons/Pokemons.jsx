@@ -9,8 +9,10 @@ import { useInView } from 'react-intersection-observer';
 // Components
 import Card from './Card/Card';
 import CreateCard from './CreateCard/CreateCard';
+import Loading from '../../Loading/Loading';
 
 const Pokemons = () => {
+  const [loaded, setLoaded] = useState(false)
   const display = useSelector(state => state.displayPokemons)
   const [ button, setButton ] = useState(true)
   
@@ -26,6 +28,7 @@ const Pokemons = () => {
   const [pages, setPages] = useState({ actual: 1, last: 1 })
 
   useEffect(() => {
+    if (display.length > 0) setLoaded(true)
     setPages({ ...pages, actual: 1, last: Math.ceil(display.length/pokemonsPerPage) })
     if (display.length > 12) setButton(true)
     else setButton(false)
@@ -38,6 +41,7 @@ const Pokemons = () => {
 
   return <><ul className={style.container}>
     <CreateCard/>
+    {(!loaded) && <Loading/>}
     {
       display?.slice(0, pages.actual * pokemonsPerPage).map(pokemon => <Card
         key={(pokemon.id) ? pokemon.id : pokemon.apiid}

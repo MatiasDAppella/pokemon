@@ -1,0 +1,31 @@
+@import '../../less/colors.less';
+@import '../../less/fonts.less';
+
+.loading {
+  margin: 0 3rem;
+  height: 10rem;
+  width: 10rem;
+  border-radius: .2rem;
+
+  // display
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 40%;
+    margin-bottom: .5rem;
+    animation: rotate 3s linear infinite;
+  }
+
+  h2 {
+    font-family: @defaultFont;
+    margin: 0;
+  }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
+}
