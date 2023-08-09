@@ -20,7 +20,6 @@ import {
   sortAscAlpha,
   sortDesAlpha
 } from '../../../../redux/actions';
-import { ALPHA, STROKE, DEFENSE, HEALTH, SPEED } from '../../../../constants';
 
 const Sort = () => {
   const dispatch = useDispatch()
