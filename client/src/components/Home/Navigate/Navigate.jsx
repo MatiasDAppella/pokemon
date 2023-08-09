@@ -4,21 +4,23 @@ import logo from '../../../assets/img/logo.png';
 
 // Hooks
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-// Actions
+// Actions & types
 import {
   toggleAll,
   toggleSearch,
   toggleCatched,
   toggleFree
 } from '../../../redux/actions';
+import { TOGGLE_ALL, TOGGLE_CATCHED, TOGGLE_FREE, TOGGLE_SEARCH } from '../../../redux/types';
 
 // Components
 import Search from './Search/Search';
 import Sort from './Sort/Sort';
 
 const Navigate = () => {
+  const filter = useSelector(state => state.displayConfig.filter)
   const dispatch = useDispatch()
   const [toggle, setToggle] = useState(true)
 
@@ -31,10 +33,10 @@ const Navigate = () => {
       <div className={style.filterBox}>
         <img src={logo} alt=""/>
         <ul>
-          <li onClick={() => dispatch(toggleAll())}>All</li>
-          <li onClick={() => dispatch(toggleSearch())}>Wanted</li>
-          <li onClick={() => dispatch(toggleCatched())}>Catched</li>
-          <li onClick={() => dispatch(toggleFree())}>Free</li>
+          <li className={(filter === TOGGLE_ALL) && style.selected} onClick={() => dispatch(toggleAll())}>All</li>
+          <li className={(filter === TOGGLE_SEARCH) && style.selected} onClick={() => dispatch(toggleSearch())}>Wanted</li>
+          <li className={(filter === TOGGLE_CATCHED) && style.selected} onClick={() => dispatch(toggleCatched())}>Catched</li>
+          <li className={(filter === TOGGLE_FREE) && style.selected} onClick={() => dispatch(toggleFree())}>Free</li>
         </ul>
       </div>
 
