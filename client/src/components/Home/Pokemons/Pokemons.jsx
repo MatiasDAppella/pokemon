@@ -6,8 +6,9 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-// Components & functions
+// Components
 import Card from './Card/Card';
+import CreateCard from './CreateCard/CreateCard';
 
 const Pokemons = () => {
   const display = useSelector(state => state.displayPokemons)
@@ -35,7 +36,9 @@ const Pokemons = () => {
     if (button) setButton(false)
   };
 
-  return <><ul className={style.container}>{
+  return <><ul className={style.container}>
+    <CreateCard/>
+    {
       display?.slice(0, pages.actual * pokemonsPerPage).map(pokemon => <Card
         key={(pokemon.id) ? pokemon.id : pokemon.apiid}
         id={pokemon.id}
@@ -48,7 +51,8 @@ const Pokemons = () => {
         health={pokemon.health}
         speed={pokemon.speed}
       />)
-    }</ul>
+    }
+    </ul>
     
     {(button) && <button className={style.moreButton} onClick={loadHandler}>More</button>}
 

@@ -1,0 +1,42 @@
+@import '../../../../less/colors.less';
+@import '../../../../less/fonts.less';
+
+.createCard {
+  font-family: "CeraRoundPro";
+  width: 20rem;
+  height: 15rem;
+  border: @grey solid .1rem;
+  border-radius: 1rem;
+  background-color: rgba(0, 0, 0, .1);
+  box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
+
+  // display
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    margin-top: .5rem;
+    padding: 0 1rem;
+    color: #454545;
+    border: @grey solid .1rem;
+    background-color: rgba(50, 50, 50, 0.1);
+    border-radius: 1rem;
+  }
+
+  img {
+    height: 60%;
+  }
+}
+
+.createCard:hover {
+  cursor: pointer;
+  animation: jump .2s;
+}
+
+@keyframes jump {
+  0%   { transform: translate(0, 0) }
+  50%  { transform: translate(0, -1rem) }
+  100% { transform: translate(0, 0) }
+}
