@@ -12,6 +12,7 @@ import { getDetail, cleanDetail, catchInPokeball, releasePokemon } from '../../r
 
 // Components
 import Tag from '../Home/Pokemons/Card/Tag/Tag';
+import Loading from '../Loading/Loading';
 
 const Detail = () => {
   const navigate = useNavigate()
@@ -53,7 +54,7 @@ const Detail = () => {
       <h1 className={style.title}>Detail</h1>
     </div>
 
-    <div className={style.container}>
+    {(detail.image) ? <div className={style.container}>
       <div className={style.imageBox}>
         {(detail.apiid) && <span>{detail.apiid}</span>}
         <img src={detail.image} alt="pokémon image"/>
@@ -78,7 +79,7 @@ const Detail = () => {
       </div>
         
       <button onClick={handleClick} className={(!detail.id) ? style.catchButton : style.releaseButton}>{(!detail.id) ? "Catch in pokeball" : "Release from pokeball"}</button>
-    </div>
+    </div> : <Loading/>}
 
     {(warning) && <div className={style.warning}>
       <div className={style.warningBorder}>

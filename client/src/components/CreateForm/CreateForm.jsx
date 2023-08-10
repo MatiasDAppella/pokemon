@@ -17,6 +17,8 @@ import Tag from '../Home/Pokemons/Card/Tag/Tag';
 const CreateForm = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const [error, setError] = useState({ image: "", name: "Your pokemon should have a name" })
+  const [errorViewer, setErrorViewer] = useState(false)
   const [image, setImage] = useState("")
   const [form, setForm] = useState({
     name: "",
@@ -30,17 +32,34 @@ const CreateForm = () => {
     types: []
   })
 
-  const [error, setError] = useState({})
 
   const globalTypes = useSelector(state => state.types)
   const [types, setTypes] = useState({ unselected: [], selected: [] })
 
   const handleGenerate = () => {
+    setImage("")
     imageRequest(setImage)
   }
 
+  // image ---------------------------------------------------------
   useEffect(() => {
-    if (!image) imageRequest(setImage)
+    imageRequest(setImage)
+  }, [])
+
+  const handleImageChange = (event) => {
+    setImage(event.target.value)
+  }
+
+  const handleImageError = () => {
+    setError({...error, image: "Should provide an existing image" })
+  }
+
+  const handleImageLoad = () => {
+    setError({...error, image: "" })
+  }
+  // image ---------------------------------------------------------
+
+  useEffect(() => {
     setTypes({...types, unselected: [...globalTypes.filter(e => e.name !== "unknown").map(e => e.name)]})
   }, [globalTypes])
 
@@ -66,8 +85,8 @@ const CreateForm = () => {
     switch (property){
       case "name":
         if (validateName(value)) setForm({...form, [property]: value.toLowerCase() })
-        if (value === "") setError({ name: "Your pokemon should have a name" })
-        else setError({})
+        if (value === "") setError({...error, name: "Your pokemon should have a name" })
+        else setError({...error, name: "" })
         break;
 
       default:
@@ -80,7 +99,7 @@ const CreateForm = () => {
   
   const handleSubmit = (event) => {
     event.preventDefault()
-    if (error == {}) return
+    if (error.image||error.name) return setErrorViewer(true)
     if (!types.selected.length) form.types = ["unknown"]
     else form.types = types.selected
     form.image = image
@@ -96,11 +115,11 @@ const CreateForm = () => {
 
     <div className={style.container}>
       <div className={style.imageBox}>
-        <img src={image} alt="" />
-        <input value={image} disabled={true} type="text" name="url" placeholder="url"/>
+        <div className={style.imageContainer}>
+          {(image) ? <img src={image} onError={handleImageError} onLoad={handleImageLoad} alt="image" /> : <h3>Loading...</h3>}
+        </div>
+        <input value={image} onChange={handleImageChange} type="text" name="url" placeholder="url"/>
         <div className={style.inputBox}>
-          {/* <span>Edit</span>
-          <input className={style.checkbox} type="checkbox" name="checkbox"/> */}
           <button onClick={handleGenerate} type="button">Generate</button>
         </div>
       </div>
@@ -141,7 +160,12 @@ const CreateForm = () => {
         types.unselected?.map(type => {if (type !== "unknown") return <Tag handleSelection={handleSelection} key={type} type={type}/>})
       }</div>
 
-      <button onClick={handleSubmit} className={style.submitButton}>Submit</button>
+      <div className={style.submitSection}>
+        {(errorViewer && (error.image||error.name)) && <div className={style.errorViewer}>
+          <p>{(error.image) ? error.image : error.name}</p>
+        </div>}
+        <button onClick={handleSubmit} className={(errorViewer && (error.image||error.name)) ? style.silencedButton : style.submitButton}>Submit</button>
+      </div>
     </div>
 
   </form>

@@ -76,8 +76,8 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         search: [...state.search.filter(e => e.apiid != action.payload.apiid)],
-        pokemons: [...state.pokemons.filter(e => e.apiid != action.payload.apiid), action.payload],
-        displayPokemons: [...state.displayPokemons.filter(e => e.apiid != action.payload.apiid), action.payload],
+        pokemons: [ action.payload,...state.pokemons.filter(e => e.apiid != action.payload.apiid)],
+        displayPokemons: [ action.payload,...state.displayPokemons.filter(e => e.apiid != action.payload.apiid)],
         displayConfig: { filter: type.TOGGLE_ALL, sort: c.NONE, method: c.NONE },
         detail: action.payload
       }

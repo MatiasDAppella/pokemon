@@ -32,7 +32,7 @@ const Card = (pokemon) => {
           speed={speed}
           apiid={apiid}
         ></Stats>
-        <h2>{name}</h2>
+        <h4>{name}</h4>
       </div>
 
       <img className={style.image} src={image} alt="pokémon name" />
