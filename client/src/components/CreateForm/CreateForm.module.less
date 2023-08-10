@@ -1,166 +1,200 @@
 @import '../../less/colors.less';
 @import '../../less/fonts.less';
 
-.form {
-  border-radius: .5rem;
-  max-width: 60rem;
-  margin: 1rem;
+form {
+  background: linear-gradient(to right, rgb(251, 113, 133), rgb(253, 186, 116));
+  box-sizing: border-box;
+  position: absolute;
+  min-height: 100vh;
+  width: 100%;
+
+  // fonts
   font-family: @defaultFont;
-  background: linear-gradient(to right, #00B4D8, #34D399);
+}
+
+.border {
+  box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
+  border: #222222 solid .1rem;
+  border-radius: .3rem;
+  margin: auto;
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
+  width: 25rem;
+  padding: .1rem;
+}
+
+h1 {
+  background-color: rgba(255, 255, 255, .2);
+  border: #222222 solid .1rem;
+  border-radius: .3rem;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 1rem;
+  width: 25rem;
+  margin: 0;
+  color: #222222;
+}
+
+.container {
+  margin: auto;
+  max-width: 51rem;
 
   // display
-  display: grid;
+  display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  column-gap: 1rem;
+  row-gap: 1.5rem;
+}
 
-  .container {
-    max-width: 56rem;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    gap: 1rem;
 
-    .imageBox, .infoBox, .tagsBox, .tagsBoxMuted {
-      border: #222222 solid .1rem;
-      border-radius: .5rem;
-      background-color: rgba(22, 22, 22, .3);
-      box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
-      padding: 1rem;
-    }
+// image -----------------------------------------------------------
+.imageBox {
+  box-sizing: border-box;
+  border: #222222 solid .1rem;
+  border-radius: .3rem;
+  background-color: rgba(255, 255, 255, .6);
+  box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
+  height: 30rem;
+  width: 25rem;
 
-    .imageBox {
-      // display
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 23rem;
+  // display
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-      img {
-        border: #222222 solid .1rem;
-        background-color: aliceblue;
-        border-radius: .5rem;
-        height: 20rem;
-        width: 20rem;
-      }
-
-      .inputBox {
-        // display
-        padding-top: .5rem;
-        width: 20rem;
-        display: flex;
-        justify-content: center;
-
-        input {
-          border-radius: .5rem;
-          border: #222222 solid .1rem;
-        }
-
-        button {
-          margin-left: .3rem;
-          font-family: @defaultFont;
-          color: white;
-          border-radius: .5rem;
-          background-color: @lightblue;
-          border: #222222 solid .1rem;
-          padding: 0 .8rem;
-      
-          // effects
-          transition: .2s;
-        }
-        
-        button:hover {
-          background-color: white;
-          color: #222222;
-          cursor: pointer;
-        }
-      }
-    }
-
-    .infoBox {
-      width: 23rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: .3rem;
-      
-      h3 {
-        padding: 0;
-        margin: .5rem;
-      }
-      
-      .dataBox, .statsBox {
-        width: 100%;
-        border: #222222 solid .1rem;
-        border-radius: .4rem;
-        background-color: rgba(240, 245, 248, .6);
-
-        span {
-          text-align: end;
-          margin-right: .2rem;
-          margin-bottom: .5rem;
-        }
+  img {
+    box-sizing: border-box;
+    width: 100%;
+  }
   
-        input {
-          margin-right: .5rem;
-          border-radius: .3rem;
-          border: @grey solid .1rem;
-        }
-      }
-      
-      .dataBox div {
-        display: grid;
-        padding-bottom: 1rem;
-        grid-template-columns: 1fr 4fr;
-        grid-template-rows: repeat(1fr, 3);
-        row-gap: .3rem;
-      }
+  input {
+    width: 80%;
+    padding: 0 1rem;
+  }
 
-      .statsBox div {
-        display: grid;
-        padding-bottom: 1rem;
-        grid-template-columns: 1fr 4fr;
-        grid-template-rows: repeat(1fr, 4);
-        row-gap: .3rem;
-      }
-    }
+  .inputBox {
+    box-sizing: border-box;
+    width: 100%;
+    flex: 1;
 
-    .tagsBox, .tagsBoxMuted, .submitButton {
-      width: 49.2rem;
-      @media screen and (max-width: 885px) {
-        width: 23rem;
-      }
-    }
+    // display
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    .tagsBox, .tagsBoxMuted {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-      row-gap: .5rem;
-    }
+    button {
+      padding: .5rem 3rem;
+      background-color: @lightblue;
+      border-radius: .2rem;
+      border: #222222 solid .1rem;
 
-    .tagsBoxMuted {
-      display: none;
-    }
-
-    .submitButton {
+      // fonts
       font-family: @defaultFont;
       font-size: larger;
       color: white;
-      height: 3rem;
-      border-radius: .5rem;
-      background-color: @lightblue;
-      border: #222222 solid .1rem;
-      margin-bottom: 1rem;
 
       // effects
-      transition: .2s;
+      transition: .3s;
     }
 
-    .submitButton:hover {
+    button:hover {
+      cursor: pointer;
       background-color: white;
       color: #222222;
-      cursor: pointer;
     }
   }
+}
+
+
+// data ------------------------------------------------------------
+.infoBox {
+  box-sizing: border-box;
+  border: #222222 solid .1rem;
+  background-color: rgba(255, 255, 255, .6);
+  box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
+  border-radius: .3rem;
+  height: 30rem;
+  width: 25rem;
+
+  // display
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .grid {
+    border: #222222 solid .1rem;
+    background-color: rgba(255, 255, 255, .6);
+    box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
+    border-radius: .3rem;
+    margin: 0 2rem 1rem;
+    padding: 1rem 3rem 1rem 2rem;
+    row-gap: 1rem;
+
+    // display
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+  }
+
+  h3 {
+    font-style: italic;
+    color: #222222;
+  }
+
+  span {
+    display: inline-block;
+    text-align: end;
+    padding-right: .5rem;
+  }
+}
+
+
+// tags ------------------------------------------------------------
+.tagsBox, .tagsBoxMuted {
+  box-sizing: border-box;
+  border: #222222 solid .1rem;
+  background-color: rgba(255, 255, 255, .6);
+  box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
+  border-radius: .3rem;
+  width: 51rem;
+  padding: 1rem;
+
+  // display
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: .6rem;
+
+  @media screen and (max-width: 815px){
+    width: 25rem;
+  }
+}
+
+.tagsBoxMuted {
+  display: none;
+}
+
+.submitButton {
+  width: 25rem;
+  padding: .5rem 3rem;
+  background-color: @darkblue;
+  border: #222222 solid .1rem;
+  box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
+  border-radius: .2rem;
+  margin-bottom: 2rem;
+
+  // fonts
+  font-family: @defaultFont;
+  font-size: larger;
+  color: white;
+
+  // effects
+  transition: .3s;
+}
+
+.submitButton:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #222222;
 }

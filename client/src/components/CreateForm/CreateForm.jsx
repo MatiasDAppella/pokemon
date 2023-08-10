@@ -90,15 +90,17 @@ const CreateForm = () => {
   };
 
   return <form onSubmit={handleSubmit} className={style.form}>
-    <h1>Create pokemon</h1>
+    <div className={style.border}>
+      <h1>Create pokemon</h1>
+    </div>
 
     <div className={style.container}>
       <div className={style.imageBox}>
         <img src={image} alt="" />
+        <input value={image} disabled={true} type="text" name="url" placeholder="url"/>
         <div className={style.inputBox}>
           {/* <span>Edit</span>
           <input className={style.checkbox} type="checkbox" name="checkbox"/> */}
-          <input value={image} disabled={true} type="text" name="url" placeholder="url"/>
           <button onClick={handleGenerate} type="button">Generate</button>
         </div>
       </div>
@@ -106,7 +108,7 @@ const CreateForm = () => {
       <div className={style.infoBox}>
         <div className={style.dataBox}>
           <h3>Information</h3>
-          <div>
+          <div className={style.grid}>
             <span>Name:</span>
             <input onChange={handleChange} value={form.name} type="text" name="name" placeholder="name"/>
             <span>Height:</span>
@@ -118,7 +120,7 @@ const CreateForm = () => {
 
         <div className={style.statsBox}>
           <h3>Stats</h3>
-          <div>
+          <div className={style.grid}>
             <span>Stroke:</span>
             <input onChange={handleChange} value={form.stroke} type="text" name="stroke" placeholder="stroke"/>
             <span>Defense:</span>
@@ -139,7 +141,7 @@ const CreateForm = () => {
         types.unselected?.map(type => {if (type !== "unknown") return <Tag handleSelection={handleSelection} key={type} type={type}/>})
       }</div>
 
-      <button onClick={handleSubmit} className={style.submitButton}>Done</button>
+      <button onClick={handleSubmit} className={style.submitButton}>Submit</button>
     </div>
 
   </form>
