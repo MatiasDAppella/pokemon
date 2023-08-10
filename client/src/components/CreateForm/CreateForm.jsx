@@ -47,6 +47,7 @@ const CreateForm = () => {
   }, [])
 
   const handleImageChange = (event) => {
+    setError({...error, image: "Loading image..." })
     setImage(event.target.value)
   }
 
