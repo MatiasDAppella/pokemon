@@ -2,38 +2,57 @@
 @import '../../less/fonts.less';
 
 .detail {
-  max-width: 60rem;
-  min-width: 460px;
-  min-height: 50vh;
-  width: 80vw;
-  background: linear-gradient(to right, #00B4D8, #34D399);
-  border-radius: 1rem;
-  margin: auto;
-  margin-top: 5vh;
-
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(to right bottom, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234));
+  font-family: @defaultFont;
+  
   // display
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 
+  .border {
+    box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
+    border: #222222 solid .1rem;
+    border-radius: .3rem;
+    margin: auto;
+    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+    width: 20rem;
+    padding: .1rem;
+  }
+  
+  .title {
+    background-color: rgba(255, 255, 255, .2);
+    border: #222222 solid .1rem;
+    border-radius: .3rem;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 1rem;
+    width: 20rem;
+    margin: 0;
+    color: #222222;
+  }
+
   .container {
-    margin: 2rem 0 2rem 0;
+    margin: .5rem 0 1rem 0;
 
     // display
     display: flex;
     flex-flow: column wrap;
-
     gap: 1rem;
 
     @media screen and (min-width: 910px) {
-      height: 26rem;
+      height: 25rem;
       width: 41rem;
     }
 
     .imageBox {
       box-sizing: border-box;
-      background-color: aliceblue;
-      border-radius: .5rem;
+      background-color: rgba(255, 255, 255, .3);
+      border-radius: .3rem;
       height: 20rem;
       width: 20rem;
 
@@ -43,32 +62,31 @@
 
       img {
         position: absolute;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
+        height: 90%;
+        width: 90%;
+        top: 5%;
+        right: 5%;
+        bottom: 5%;
+        left: 5%;
       }
 
       span {
-        font-family: "CeraRoundPro";
-        font-size: 10rem;
-        color: @grey;
-        opacity: .3;
+        color: #222222;
         display: inline-block;
         position: absolute;
-        padding: 0;
-        margin: 0;
-        top: 3.5rem;
-        right: 0;
-        left: 0;
+        background-color: rgba(255, 255, 255, .6);
+        border: #222222 solid .1rem;
+        border-radius: .3rem;
+        padding: .1rem .3rem;
+        top: .5rem;
+        right: .7rem;
       }
     }
   
     .infoBox {
+      box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
       background-color: rgba(22, 22, 22, .3);
-      border-radius: .5rem;
+      border-radius: .3rem;
       height: 25rem;
       width: 20rem;
 
@@ -85,7 +103,6 @@
 
       h1, .bodyInfo, .stats, .tags {
         font-size: larger;
-        font-family: "CeraRoundPro";
         box-sizing: border-box;
         margin: 0 1.5rem 1.5rem 1.5rem;
         padding: 0;
@@ -143,30 +160,112 @@
       }
     }
   
-    .catchButton {
-      font-family: "CeraRoundPro";
+    .catchButton, .releaseButton {
+      font-family: @defaultFont;
+      box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
+      border: #222222 solid .1rem;
       font-size: larger;
       color: white;
-      border: #222222 solid .1rem;
-      background-color: @lightblue;
-      border-radius: .5rem;
+      border-radius: .3rem;
       height: 4rem;
       width: 20rem;
-
+      
       // display
       order: 3;
       @media screen and (min-width: 910px) {
         order: 2;
       }
+      
+      // effects
+      transition: .3s;
+    }
+    
+    .catchButton {
+      background-color: @green;
+    }
+    
+    .releaseButton {
+      background-color: @lightblue;
+    }
+
+    .catchButton:hover, .releaseButton:hover {
+      cursor: pointer;
+      background-color: white;
+      color: #222222;
+    }
+  }
+
+
+  // warning box ---------------------------------
+  .warning {
+    padding: .5rem;
+    box-sizing: border-box;
+    box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
+    background-color: rgba(255, 255, 255, .3);
+    border: #222222 solid .1rem;
+    border-radius: .3rem;
+    margin-bottom: 2rem;
+    width: 41rem;
+
+    @media screen and (max-width: 910px) {
+      width: 20rem;
+    }
+  }
+
+  .warningBorder {
+    box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
+    border: #222222 solid .1rem;
+    border-radius: .3rem;
+    margin: auto;
+    margin-bottom: 1.5rem;
+    width: 18rem;
+    padding: .1rem;
+  }
+  
+  .warningTitle {
+    background-color: rgba(255, 255, 255, .2);
+    border: #222222 solid .1rem;
+    border-radius: .3rem;
+    display: inline-block;
+    box-sizing: border-box;
+    color: #222222;
+    padding: 1rem;
+    width: 18rem;
+    margin: 0;
+  }
+
+  .warningButtons {
+    box-sizing: border-box;
+    
+    // display
+    display: flex;
+    gap: .5rem;
+    
+    .cancel, .proceed {
+      font-family: @defaultFont;
+      border: #222222 solid .1rem;
+      color: white;
+      border-radius: .3rem;
+      padding: .5rem;
 
       // effects
       transition: .3s;
     }
 
-    .catchButton:hover {
+    .cancel:hover, .proceed:hover {
       cursor: pointer;
       background-color: white;
       color: #222222;
+    }
+
+    .cancel {
+      width: 70%;
+      background-color: @lightblue;
+    }
+
+    .proceed {
+      width: 30%;
+      background-color: @red;
     }
   }
 }

@@ -3,7 +3,7 @@ import style from './Detail.module.less';
 import pokeball from '../../assets/img/pokeball.png';
 
 // Hooks
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -19,21 +19,43 @@ const Detail = () => {
   const detail = useSelector(state => state.detail)
   const dispatch = useDispatch()
 
+  // warning
+  const [warning, setWarning] = useState(false)
+
+  const handleWarning = (event) => {
+    switch (event.target.id){
+      case "CANCEL":
+        return setWarning(false)
+      case "PROCEED":
+        return ending()
+    }
+  }
+
   useEffect(() => {
     dispatch(getDetail(id))
     return () => dispatch(cleanDetail())
   }, [])
 
-  const handleClick = () => {
+  const ending = () => {
     if (!detail.id) dispatch(catchInPokeball(detail))
     else dispatch(releasePokemon(detail.id.toString()))
     if (!detail.apiid) navigate('/home')
   }
 
+  const handleClick = () => {
+    return (!detail.apiid)
+      ? setWarning(true)
+      : ending()
+  }
+
   return <main className={style.detail}>
+    <div className={style.border}>
+      <h1 className={style.title}>Detail</h1>
+    </div>
+
     <div className={style.container}>
       <div className={style.imageBox}>
-        <span>{(detail.apiid) ? detail.apiid : '???'}</span>
+        {(detail.apiid) && <span>{detail.apiid}</span>}
         <img src={detail.image} alt="pokémon image"/>
       </div>
 
@@ -55,8 +77,19 @@ const Detail = () => {
         </div>
       </div>
         
-      <button onClick={handleClick} className={style.catchButton}>Catch in pokeball</button>
+      <button onClick={handleClick} className={(!detail.id) ? style.catchButton : style.releaseButton}>{(!detail.id) ? "Catch in pokeball" : "Release from pokeball"}</button>
     </div>
+
+    {(warning) && <div className={style.warning}>
+      <div className={style.warningBorder}>
+        <h1 className={style.warningTitle}>Warning</h1>
+      </div>
+      <p>You created this pokemon, if you want to release it you wont be able to get it back</p>
+      <div className={style.warningButtons}>
+        <button id="CANCEL" onClick={handleWarning} className={style.cancel}>Cancel</button>
+        <button id="PROCEED" onClick={handleWarning} className={style.proceed}>Proceed</button>
+      </div>
+    </div>}
   </main>
 };
 
