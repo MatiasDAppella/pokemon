@@ -78,13 +78,18 @@ const Detail = () => {
         </div>
       </div>
         
-      <button onClick={handleClick} className={(!detail.id) ? style.catchButton : style.releaseButton}>{(!detail.id) ? "Catch in pokeball" : "Release from pokeball"}</button>
+      {(!warning) ?
+      <button onClick={handleClick} className={(!detail.id) ? style.catchButton : style.releaseButton}>
+        {(!detail.id) ? "Catch in pokeball" : "Release from pokeball"}
+      </button>
+      :
+      <div className={style.warningBorder}>
+        <h3 className={style.warningTitle}>Warning!</h3>
+      </div>}
+
     </div> : <Loading/>}
 
     {(warning) && <div className={style.warning}>
-      <div className={style.warningBorder}>
-        <h1 className={style.warningTitle}>Warning</h1>
-      </div>
       <p>You created this pokemon, if you want to release it you wont be able to get it back</p>
       <div className={style.warningButtons}>
         <button id="CANCEL" onClick={handleWarning} className={style.cancel}>Cancel</button>
