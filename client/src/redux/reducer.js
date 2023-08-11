@@ -32,7 +32,8 @@ export const reducer = (state = initialState, action) => {
         search: [...action.payload.filter(pokemon => state.search.every(e => e.apiid !== pokemon.apiid && (e.id !== pokemon.id || !pokemon.id))), ...state.search],
         pokemons: [...state.pokemons, ...action.payload.filter(pokemon => state.pokemons.every(e => e.apiid !== pokemon.apiid && (e.id !== pokemon.id || !pokemon.id)))],
         displayPokemons: [...action.payload.filter(pokemon => state.search.every(e => e.apiid !== pokemon.apiid && (e.id !== pokemon.id || !pokemon.id))), ...state.search],
-        displayConfig: { filter: type.TOGGLE_SEARCH, sort: c.NONE, method: c.NONE }
+        displayConfig: { filter: type.TOGGLE_SEARCH, sort: c.NONE, method: c.NONE },
+        error: ""
       };
 
     case type.ADD_ERROR_MESSAGE:

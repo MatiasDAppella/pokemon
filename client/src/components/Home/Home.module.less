@@ -30,6 +30,32 @@
     }
   }
 
+  // up button
+  .upButton {
+    background: linear-gradient(to right, rgb(251, 113, 133), rgb(217, 70, 239), rgb(99, 102, 241));
+    font-family: @defaultFont;
+    font-weight: bolder;
+    font-size: large;
+    display: inline-block;
+    position: fixed;
+    right: 2rem;
+    top: 2rem;
+    padding: .5rem 2rem;
+    z-index: 9;
+    color: white;
+    border: #222222 solid .1rem;
+    border-radius: .3rem;
+
+    // effects
+    transition: .6s;
+  }
+
+  .upButton:hover {
+    cursor: pointer;
+    background: white;
+    color: #222222;
+  }
+
   footer {
     position: relative;
     bottom: 0;
