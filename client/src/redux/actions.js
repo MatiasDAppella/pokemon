@@ -29,12 +29,30 @@ export const getSearch = (name) => {
   const endpoint = `http://localhost:3001/pokemons/name?search=${name}`;
   
   return (dispatch) => fetch(endpoint)
-  .then(res => res.json())
-  .then(data => dispatch({
-    type: type.GET_SEARCH,
-    payload: data
-  })).catch()
+  .then(res => {
+    if (!res.ok) return null
+    else return res.json()
+  })
+  .then(data => {
+    if (data.length > 0) return dispatch({
+      type: type.GET_SEARCH,
+      payload: data
+    })
+    else return dispatch({
+      type: type.ADD_ERROR_MESSAGE,
+      payload: "No results"
+    })
+  }).catch()
 };
+
+export const addErrorMessage = (message) => ({
+  type: type.ADD_ERROR_MESSAGE,
+  payload: message
+})
+
+export const removeErrorMessage = () => ({
+  type: type.REMOVE_ERROR_MESSAGE
+});
 
 // detail
 export const getDetail = (id) => {

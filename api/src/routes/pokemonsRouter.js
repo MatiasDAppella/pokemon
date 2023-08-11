@@ -9,6 +9,7 @@ pokemonsRouter.get("/name", async (req, res) => {
   try {
     const { search } = req.query
     const result = await pokemons.searchPokemons(search)
+    if (result == []) throw new Error("No results")
     return res.status(200).send(result)
 
   } catch (error) {

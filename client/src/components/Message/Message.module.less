@@ -1,0 +1,27 @@
+@import '../../less/colors.less';
+@import '../../less/fonts.less';
+
+.message {
+  display: inline-block;
+  padding: .1rem;
+  border: #222222 double .2rem;
+  border-radius: .3rem;
+  background-color: rgba(255, 255, 255, .95);
+
+  // display
+  position: absolute;
+  z-index: 9;
+  top: 12rem;
+  left: 6rem;
+  
+  h2 {
+    display: inline-block;
+    padding: 1rem 2rem;
+    margin: 0;
+    border-radius: .3rem;
+    background: linear-gradient(rgb(17, 24, 39), rgb(75, 85, 99));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}

@@ -2,15 +2,26 @@
 import style from './Search.module.less';
 
 // Hooks
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Actions
-import { getSearch } from '../../../../redux/actions';
+import { getSearch, removeErrorMessage, addErrorMessage } from '../../../../redux/actions';
+
+// Components
+import Message from '../../../Message/Message';
 
 const Search = () => {
-  const dispath = useDispatch()
+  const dispatch = useDispatch()
+  const error = useSelector(state => state.error)
   const [input, setInput] = useState("")
+
+  // no search found
+  useEffect(() => {
+    if (error !== "" && error !== "Searching...") setTimeout(() => {
+      dispatch(removeErrorMessage())
+    }, 3000)
+  }, [error])
 
   const handleChange = (event) => {
     setInput(event.target.value.toLowerCase())
@@ -18,11 +29,13 @@ const Search = () => {
 
   const handleSearch = () => {
     if (!input) return
-    dispath(getSearch(input))
+    dispatch(addErrorMessage("Searching..."))
+    dispatch(getSearch(input))
     setInput("")
   };
 
   return <div className={style.search}>
+    {(error) && <Message text={error}/>}
     <div className={style.searchBox}>
       <button className={style.btn} onClick={handleSearch}>Search</button>
       <input type="text" value={input} onChange={handleChange}/>

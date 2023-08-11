@@ -2,6 +2,7 @@ import * as type from './types';
 import * as c from '../constants';
 
 const initialState = {
+  error: "",
   pokemons: [],
   types: [],
   search: [],
@@ -33,6 +34,18 @@ export const reducer = (state = initialState, action) => {
         displayPokemons: [...action.payload.filter(pokemon => state.search.every(e => e.apiid !== pokemon.apiid && (e.id !== pokemon.id || !pokemon.id))), ...state.search],
         displayConfig: { filter: type.TOGGLE_SEARCH, sort: c.NONE, method: c.NONE }
       };
+
+    case type.ADD_ERROR_MESSAGE:
+      return {
+        ...state,
+        error: action.payload
+      }
+
+    case type.REMOVE_ERROR_MESSAGE:
+      return {
+        ...state,
+        error: ""
+      }
     
     case type.TOGGLE_ALL:
       return {
