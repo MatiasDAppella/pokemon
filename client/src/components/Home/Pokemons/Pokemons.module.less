@@ -14,23 +14,46 @@
   gap: 2rem;
 }
 
-.moreButton {
-  margin-bottom: 5rem;
-  font-family: @defaultFont;
-  font-size: larger;
-  padding: .5rem 2rem;
-  border-radius: .5rem;
-  background-color: @orange;
-  border: #222222 solid .1rem;
-  box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
-  color: white;
+.paginatedBox {
+  position: fixed;
+  z-index: 9;
+  top: 12em;
+  right: 1em;
 
-  // effects
-  transition: .3s;
-}
+  display: flex;
+  flex-direction: column;
+  gap: .2em;
 
-.moreButton:hover {
-  cursor: pointer;
-  background-color: white;
-  color: #222222;
+  div {
+    border: #222222 double .2em;
+    background-color: rgba(255, 255, 255, .95);
+    font-family: @defaultFont;
+    border-radius: .3em;
+    padding: .3em 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: .1em;
+  }
+
+  .prev { background: linear-gradient(to right, rgb(251, 113, 133), rgb(217, 70, 239), rgb(99, 102, 241)); }
+  .next { background: linear-gradient(to left, rgb(251, 113, 133), rgb(217, 70, 239), rgb(99, 102, 241)); }
+  .muted { visibility: hidden; }
+
+  .prev, .next { transition: .5s; }
+
+  button{
+    font-family: @defaultFont;
+    padding: .5rem 2rem;
+    border-radius: .3rem;
+    border: #222222 solid .1rem;
+    box-shadow: 0 1rem 1rem rgba(128, 128, 128, 0.3);
+    color: white;
+  }
+  
+  button:hover {
+    cursor: pointer;
+    background: white;
+    color: #222222;
+  }
 }
