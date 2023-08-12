@@ -17,16 +17,13 @@ const {
 class pokemonsController {
   getFirstRandomPokemons = async () => {
     const random = (Math.floor(Math.random() * 51)) * 20;
-    const endpoint = `https://pokeapi.co/api/v2/pokemon/?offset=${random}&limit=20`;
+    const endpoint = (id) => `https://pokeapi.co/api/v2/pokemon/${id}`;
 
-    let pokemons = await axios
-      .get(endpoint)
-      .then(response => response.data.results)
-      .catch(() => { throw new Error("No response from api") })
+    let pokemons = Array.from({ length: 36 }, (_, i) => random + i)
 
     let pokemonsWithInfo = new Array();
     while (pokemons.length){
-      const url = pokemons.shift().url
+      const url = endpoint(pokemons.shift())
 
       let pokemonData = await axios
         .get(url)
