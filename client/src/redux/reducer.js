@@ -107,7 +107,7 @@ export const reducer = (state = initialState, action) => {
           if (pokemon.id === action.payload.id) delete pokemon.id
           return pokemon
         }).filter(e => e.id||e.apiid)],
-        displayPokemons: [...state.displayPokemons.map(pokemon => { 
+        displayPokemons: [...state.pokemons.map(pokemon => { 
           if (pokemon.id === action.payload.id) delete pokemon.id
           return pokemon
         }).filter(e => e.id||e.apiid)],

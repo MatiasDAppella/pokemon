@@ -27,6 +27,10 @@ const Search = () => {
     setInput(event.target.value.toLowerCase())
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") handleSearch()
+  };
+
   const handleSearch = () => {
     if (!input) return
     dispatch(addErrorMessage("Searching..."))
@@ -38,7 +42,7 @@ const Search = () => {
     {(error) && <Message text={error}/>}
     <div className={style.searchBox}>
       <button className={style.btn} onClick={handleSearch}>Search</button>
-      <input type="text" value={input} onChange={handleChange}/>
+      <input onKeyPress={handleKeyPress} type="text" value={input} onChange={handleChange}/>
     </div>
     <div className={style.separator}/>
   </div>

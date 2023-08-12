@@ -23,8 +23,8 @@ import {
 
 const Sort = () => {
   const dispatch = useDispatch()
-  const [lastSort, setLastSort] = useState("")
-  const [toggle, setToggle] = useState(true)
+  const [lastSort, setLastSort] = useState("Alphabetically")
+  const [toggle, setToggle] = useState(false)
 
   const clickHandler = () => {
     setToggle(!toggle)
