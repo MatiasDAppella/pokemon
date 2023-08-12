@@ -5,7 +5,6 @@ import instagramIcon from '../../assets/icons/instagram.png'
 
 // Hooks
 import { useInView } from 'react-intersection-observer';
-import { useEffect, useState } from 'react';
 
 // Components
 import Pokemons from './Pokemons/Pokemons';
