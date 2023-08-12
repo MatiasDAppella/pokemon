@@ -5,32 +5,6 @@ body {
   background-color: aliceblue;
 }
 
-// to bottom button =================================
-.toBottom {
-  background: linear-gradient(to right, rgb(251, 113, 133), rgb(217, 70, 239), rgb(99, 102, 241));
-  font-family: @defaultFont;
-  font-weight: bolder;
-  font-size: large;
-  display: inline-block;
-  position: fixed;
-  right: 2rem;
-  top: 2rem;
-  padding: .5rem 2rem;
-  z-index: 9;
-  color: white;
-  border: #222222 solid .1rem;
-  border-radius: .3rem;
-
-  // effects
-  transition: .6s;
-}
-
-.toBottom:hover {
-  cursor: pointer;
-  background: white;
-  color: #222222;
-}
-
 // header ===========================================
 header .imageBackground {
   width: 100%;
@@ -87,10 +61,6 @@ header .imageBackground {
   0% { transform: translate(0, 0); }
   50% { transform: translate(0, -.5em); }
   100% { transform: translate(0, 0); }
-}
-
-.titleBox:hover {
-  cursor: pointer;
 }
 
 // main =============================================
