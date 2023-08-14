@@ -55,8 +55,8 @@ class pokemonsController {
 
   catchInPokeball = async (pokemon) => {
     if (!validateAllProperties(pokemon)) throw new Error("Faltan datos!")
+    if (pokemon.hasOwnProperty(id)) delete pokemon.id
     pokemon.name = pokemon.name.toLowerCase()
-    if (pokemon.id === "") delete pokemon.id
 
     // Una vez validados los campos, "atrapo" mi pokemon en la database (Pokeball).
     const catchedPokemon = await Pokemon.create(pokemon)

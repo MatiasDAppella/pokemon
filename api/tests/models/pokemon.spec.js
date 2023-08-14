@@ -24,17 +24,9 @@ describe('Pokemon model', () => {
 
     // id --------------------------------------------------------
     describe('id', () => {
-      let result;
-      let pokemonWhitId = { ...pokemonWithoutApiid, id: 12 }
-
       it('should generate an uuid', async () => {
-        result = await Pokemon.create(pokemonWithoutApiid)
+        let result = await Pokemon.create(pokemonWithoutApiid)
         expect(result.dataValues).to.have.own.property('id')
-      });
-
-      it('should ignore "id" property in request body', async () => {
-        result = await Pokemon.create(pokemonWithoutApiid)
-        expect(result.dataValues).to.have.own.property('id').not.equal(12)
       });
     });
 
