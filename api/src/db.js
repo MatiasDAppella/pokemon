@@ -3,11 +3,12 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 /* const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env; */
-const { DATABASE_URL } = process.env;
+/* const { DATABASE_URL } = process.env; */
 
 const sequelize = new Sequelize(
    /*`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,*/
-   DATABASE_URL,
+   /* DATABASE_URL, */
+   "postgres://pokemon_db_hrzb_user:ysdDZvIh7B8tsKFIeDoFssJ9U8iTE3iB@dpg-cke28rdjhfbs73abq7r0-a/pokemon_db_hrzb",
    {
       logging: false, // set to console.log to see the raw SQL queries
       native: false, // lets Sequelize know we can use pg-native for ~30% more speed
