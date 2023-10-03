@@ -1,9 +1,9 @@
 import * as type from './types';
-import {  } from '../constants';
+const domain = "https://pokemon-api-yo6q.onrender.com";
 
 // render
 export const renderFirstPokemons = () => {
-  const endpoint = `http://localhost:3001/pokemons`;
+  const endpoint = `${domain}/pokemons`;
 
   return (dispatch) => fetch(endpoint)
     .then(res => res.json())
@@ -14,7 +14,7 @@ export const renderFirstPokemons = () => {
 };
 
 export const createTypesInDatabase = () => {
-  const endpoint = `http://localhost:3001/types`;
+  const endpoint = `${domain}/types`;
 
   return (dispatch) => fetch(endpoint)
     .then(res => res.json())
@@ -26,7 +26,7 @@ export const createTypesInDatabase = () => {
 
 // search
 export const getSearch = (name) => {
-  const endpoint = `http://localhost:3001/pokemons/name?search=${name}`;
+  const endpoint = `${domain}/pokemons/name?search=${name}`;
   
   return (dispatch) => fetch(endpoint)
   .then(res => {
@@ -56,7 +56,7 @@ export const removeErrorMessage = () => ({
 
 // detail
 export const getDetail = (id) => {
-  const endpoint = `http://localhost:3001/pokemons/${id}`;
+  const endpoint = `${domain}/pokemons/${id}`;
   
   return (dispatch) => fetch(endpoint)
   .then(res => res.json())
@@ -72,7 +72,7 @@ export const cleanDetail = () => ({
 
 // catch/release from pokeball
 export const catchInPokeball = (pokemon) => {
-  const endpoint = `http://localhost:3001/pokemons`;
+  const endpoint = `${domain}/pokemons`;
   const requestConfig = {
     method: 'POST',
     headers: {
@@ -90,7 +90,7 @@ export const catchInPokeball = (pokemon) => {
 };
 
 export const releasePokemon = (id) => {
-  const endpoint = `http://localhost:3001/pokeball/${id}`;
+  const endpoint = `${domain}/pokeball/${id}`;
   const requestConfig = {
     method: 'DELETE'
   }
