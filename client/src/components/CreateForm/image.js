@@ -1,4 +1,4 @@
-const endpoint = 'http://localhost:3001/image'
+const endpoint = 'https://pokemon-api-yo6q.onrender.com/image'
 
 export const imageRequest = async (setImage) => {
   
